@@ -1,0 +1,697 @@
+/* google fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background: linear-gradient(90deg, #DF2878 0%, #390455 100%);
+}
+/* 
+.inner-header{
+    padding:30px 0px;
+} */
+
+.inner-header 
+
+.customer-support{
+    margin: 30px 0px;
+}
+
+
+.link {
+    text-decoration:none;
+color: #FFF !important;
+font-family: Josefin Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 27.2px;
+margin-right: 45px;
+}
+.arrow{
+    display: contents;
+}
+.arrow button{
+
+    text-decoration:none;
+    color: #FFF !important;
+font-family: Josefin Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 27.2px;
+}
+.arrow button:focus{
+    color: #EFEFEF;
+}
+
+.logo a img{
+    margin-top: 20px;
+}
+.nav-link {
+    padding: 0px;
+}
+
+.navbar-light .navbar-toggler:focus {
+    color: white;}
+
+    .navbar-toggler:focus{
+        background-color: white;
+    }
+    
+element.style {
+}
+button:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+.navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+
+
+.navbarr ul{
+    padding: 0px;
+}
+.navbar ul li {
+    display:inline;
+}
+
+.navbarr ul li  a{
+    text-decoration: none;
+    color: #FFF !important;
+font-family: Josefin Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 27.2px;
+margin: 0px 22px;
+
+}
+.navbarr ul li  a:hover{
+    color:#0F0233 !important;
+}
+
+.tag-buy:hover {
+    color: #0F0233 !important;
+}
+.btn:focus{
+
+    box-shadow: none;
+}
+
+.tag-buy {
+    border-radius: 31px;
+    background: linear-gradient(180deg, #86048D 0%, #D20F7E 100%);
+    padding: 7px 24px;
+    color: #FFF;
+font-family: Josefin Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 21px;
+text-transform: uppercase;
+}
+.tag-buy img{
+    padding-right: 2px;
+}
+
+
+/* cover */
+.cover{
+    padding: 0px;
+    margin: 60px 0px;
+}
+
+
+.shippingform{   
+     width: 85%;
+    padding: 41px 0px 41px 70px;
+    border-radius: 20px;
+background: linear-gradient(112deg, #3B26DB 1%, #7B19CB 100%);
+box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.30);
+}
+
+.contact-drop p{
+    color: #FFF;
+    font-family: Josefin Sans;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.formname{
+    margin-top: 20px;
+    margin-bottom: 1rem;
+    color: #FFF;
+text-shadow: 15px 12px 50px rgba(0, 0, 0, 0.30);
+font-family: Josefin Sans;
+font-size: 23px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: 1.02px;
+}
+.formname em{
+    color: red;
+}
+.forminput{
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: 10px;
+border:1px solid #7279CD;
+background:rgba(0, 0, 0, 0.10);
+box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
+margin-bottom: 18px;
+color: #687CD8;
+font-family: Josefin Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.forminput:focus {
+    border-color: none !important;
+    outline: 0;
+    box-shadow:none !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+[type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  
+
+  .contact-message{
+    border-radius: 28px;
+/* background: linear-gradient(180deg, #86048D 0%, #D20F7E 100%); */
+box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.25);
+background-color:#DF2878;
+padding: 9px 0px;
+text-align: center;
+  }
+  .contact-message:hover{
+    background-color:#0F0233;
+}
+.contact-message button:hover{
+  color: white;
+}
+  .contact-message button{
+    color: #FFF;
+font-family: Josefin Sans;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 0px; 
+text-transform: uppercase;
+width: 100%;
+  }
+  .card-img{
+    background-color:transparent;
+    border: none;
+  }
+  .card-para{
+    color: #FFF;
+font-family: Josefin Sans;
+font-size: 13px;
+font-style: normal;
+font-weight: 400;
+line-height: 24.6px;
+text-transform: uppercase;
+  }
+
+  .card-number{
+    color: #31D7A9;
+font-family: Josefin Sans;
+font-size: 13px;
+font-style: normal;
+font-weight: 400;
+line-height: 27.2px; /* 170% */
+  }
+
+  .contact-us-img-girl img{
+width: 87%;
+margin-top: 20px;
+margin-left: 36px;
+    height: 643px;
+}
+.main-card-body{
+    
+}
+/* footer */
+
+.footer{
+    height: auto;
+   background-color: #0F0233;
+}
+.line {
+color:white ;
+ height: 1px;
+ margin-top: 59px;
+ }
+
+.social-media{
+    margin: 25px 0px 21px 0px;
+    display: flex;
+    justify-content: end;
+}
+.social-media a{
+    text-decoration: none;
+    color: white;
+}
+.social-media img{
+    padding: 0px 20px;
+}
+.whatsapp-padding{
+   padding-right: 0px !important; 
+}
+.Copyright-lottery p{
+    color: #C4CBF9;
+    font-family: Josefin Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30.6px; 
+    padding: 30px 0px 0px;
+}
+
+
+/* media query */
+
+
+
+
+@media only screen and (min-width:280px) and (max-width: 991px) {  
+    .inner-header .customer-support {
+        margin: 12px 0px;
+    }
+   
+ 
+
+        .line {
+            margin-top: 21px;
+        }
+        .navbarr ul li a:hover{
+            color: #D20F7E !important;
+        }
+        
+
+#navbarSupportedContent{
+    background-color:#390455 ;
+    padding: 8px 5px;
+}
+.navbar-nav{
+    margin-bottom: 0px !important;
+}
+.tag-buy{
+    margin-left: 10px;
+}
+.button-check button {
+    width: 41%;
+    height: 11%;
+    margin-top: 27px;
+ }
+ .cover {
+    padding: 0px;
+    margin: 43px 0px;
+}
+ .shipping-detail p{
+    font-size: 40px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+ }
+ .form-name {
+    margin-bottom: 0.3rem;
+    font-size: 19px;
+    letter-spacing: 0.02px;
+}
+.form-input {
+    padding: 7px 7px;
+    margin-bottom: 18px;
+    font-size: 16px;
+    letter-spacing: -0.16px;
+}
+
+.shippingform {
+    width: 80%;
+    padding: 40px 0px 16px 23px;
+}
+.contact-drop p {
+    font-size: 22px;
+margin-bottom: 0px;}
+
+.formname {
+    margin-top: 18px;
+    margin-bottom: 0.35rem;
+    font-size: 18px;
+    letter-spacing: 0.02px;
+}
+
+.forminput {
+    padding: 9px 11px;
+    margin-bottom: 0px;
+    font-size: 13px;
+}
+
+.contact-message button {
+    font-size: 15px;}
+    .contact-message {
+        padding: 5px 0px;
+        margin-top: 10px;
+    }
+
+.card-img img{
+    width: 71%;
+}
+
+.card-para {
+    font-size: 11px;
+    line-height: 8.6px;
+    margin-top: 10px;
+    margin-left: -11px !important;
+}
+.card-number {
+    font-size: 11px;
+    margin-left: -12px;
+}
+
+.contact-us-img-girl img {
+    width: 85%;
+    margin-top: 20px;
+    margin-left: 36px;
+    height: auto;
+}
+
+.shipping-detail-btn{
+    padding: 7px 0px;
+}
+.shipping-detail-btn button {
+    font-size: 17px;}
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .button-check button {
+        width: 100%;
+        height: 10%;
+        margin-top: 28px;
+        margin-bottom: 32px;
+    }
+    .cover {
+        margin: 21px 0px;
+    }
+    .formname {
+        font-size: 16px;
+    }
+    .forminput {
+        font-size: 11px;
+    }
+    .contact-message {
+        padding: 1px 0px;
+    }
+
+    .contact-message button {
+        font-size: 13px;
+    }
+    .card-para {
+        font-size: 12px;
+        line-height: 0.6px;
+        margin-top: 10px;
+        margin-left: 0px !important;
+    }
+    .card-number {
+        font-size: 12px;
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+    .crad-pading{
+        margin-top: 25px;
+    }
+    .card-disply{
+        display: flex;
+        justify-content: center;
+    }
+    .contact-us-img-girl img{
+        display: none;
+    }
+    .shipping-detail p {
+        font-size: 32px;
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+    .shippingform {
+        width: 80%;
+        padding: 38px 15px 13px 40px;
+    }
+    
+    .card-img img {
+        width: auto;
+    }
+    .Copyright-lottery p {
+        font-size: 13px;
+        padding: 22px 0px 0px;
+    }
+    .social-media img {
+        padding: 0px 10px;
+        width: 20%;
+        height: 30px;
+    }
+    .social-media {
+        margin: 19px 0px 0px 0px;
+    }
+    .whatsapp-padding {
+        padding-right: 7px !important;
+    }
+   
+}
+
+
+@media only screen and (min-width:280px) and (max-width: 575px) {
+    .inner-header .customer-support {
+        margin: 10px 0px;
+    }
+    .link {
+        font-size: 14px;
+        margin-right: 16px;
+    }
+    .arrow{
+        font-size: 14px;
+    }
+
+    .arrow img{
+        width: 11px;
+    }
+    .navbarr ul li a {
+        font-size: 12px;
+        margin: 0px 9px;
+   }
+   .navbar-brand img {
+    width: 64%;
+}
+   .tag-buy {
+    border-radius: 16px;
+    padding: 4px 7px;
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 0px;
+}
+.tag-buy img {
+    padding-right: 2px;
+    width: 15px;}
+
+    .cover {
+        margin: 27px 0px;
+    }
+    .contact-drop p {
+        font-size: 18px;
+    }
+    .formname {
+        font-size: 15px;
+    }
+    .shipping-detail p {
+        font-size: 28px;
+        margin-top: 0px;
+        margin-bottom: 11px;
+    }
+    
+    .formname {
+        font-size: 14px;
+    }
+    .forminput {
+        padding: 8px 7px;
+        margin-bottom: 0px;
+        font-size: 11px;
+    }
+    .contact-message button {
+        font-size: 13px;
+    }
+    .contact-message {
+        padding: 2px 0px;
+        margin-top: 10px;
+    }
+    .card-img img {
+        width:25% ;
+    }
+.crad-pading{
+    margin-top: 27px;
+}
+    .card-disply{
+        display: flex;
+        justify-content: center;
+    } 
+    .contact-us-img-girl img{
+        display: none;
+    }
+    .shipping-detail-btn {
+        width: 82%;
+        padding: 3px 0px;
+        margin-left: 10px;
+    }
+
+    .shipping-detail-btn button {
+        font-size: 13px;
+    }
+    .line {
+        margin-top: 35px;
+    }
+    .Copyright-lottery p {
+        font-size: 14px;
+}
+.social-media img {
+    /* padding: 0px 10px; */
+    /* width: 11%; */
+    height: 30px;
+}
+.social-media img {
+    padding: 0px 14px;
+}
+    .social-media {
+        margin: 14px 0px 16px 0px;
+        display: flex;
+        justify-content: center;
+    }
+    .Copyright-lottery{
+        display: flex;
+        justify-content: center;
+    }
+    .Copyright-lottery p {
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+    .whatsapp-padding {
+        padding-right: 30px !important;
+    }
+
+}
+@media only screen and (min-width:280px) and (max-width: 381px) {
+.cover{
+    margin: 14px 0px;
+}
+.shippingform {
+    width: 80%;
+    padding: 24px 0px 10px 26px;
+}
+.contact-drop p {
+    font-size: 16px;
+}
+.formname {
+    margin-top: 12px;
+    margin-bottom: 3px;}
+    .forminput {
+        padding: 7px 7px;
+        margin-bottom: 4px;
+        font-size: 10px;
+    }
+
+.contact-message {
+    padding: 0px 0px;
+    margin-top: 0px;
+}
+.contact-message button {
+    font-size: 10px;
+}
+.card-para {
+    font-size: 9px;
+    line-height: 1.6px;
+    margin-top: 6px;
+    margin-left: 0px !important;
+}
+.crad-pading {
+    margin-top: 14px;
+}
+
+.card-number {
+    font-size: 9px;
+    margin-left: 0px;
+}
+.shipping-detail-btn {
+    width: 80%;
+    padding: 3px 0px;
+    margin-left: 8px;
+    margin-top: 5px;
+}
+    .shipping-detail p {
+        font-size: 19px;
+        margin-top: 0px;
+        margin-bottom: 7px;
+    }
+    .shippingform {
+        width: 80%;
+        padding: 14px 0px 10px 29px;
+    }
+    .formname {
+        font-size: 14px;
+    }
+    .forminput {
+        padding: 3px 7px;
+        margin-bottom: 9px;
+        font-size: 10px;
+    }
+    .form-name {
+        margin-bottom: 0px;}
+
+
+.Copyright-lottery p {
+    margin-bottom: 0px;
+    padding: 1px 0px 0px;
+    font-size: 12px;
+
+}
+.navbarr{
+    padding: 0px;
+}
+
+    .social-media img {
+        padding: 0px 10px;
+        /* width: 18%; */
+        height: 28px;
+    }
+    .whatsapp-padding {
+        padding-right: 6px !important;
+    }
+    .tag-buy {
+        padding: 5px 7px;
+        line-height: 14px;
+    }
+   
+}
+@media (min-width: 1200px) { }
+@media (min-width: 1400px) { }

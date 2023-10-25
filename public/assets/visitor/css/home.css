@@ -1,0 +1,516 @@
+/* google fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background: linear-gradient(90deg, #DF2878 0%, #390455 100%);
+}
+/* 
+.inner-header{
+    padding:30px 0px;
+} */
+
+.inner-header 
+
+.customer-support{
+    margin: 30px 0px;
+}
+
+
+.link {
+    text-decoration:none;
+color: #FFF !important;
+font-family: Josefin Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 27.2px;
+margin-right: 45px;
+}
+.arrow{
+    display: contents;
+}
+
+.arrow button{
+    text-decoration:none;
+    color: #FFF !important;
+font-family: Josefin Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 27.2px;
+}
+.arrow button:focus{
+    color: #EFEFEF;
+}
+
+.logo a img{
+    margin-top: 20px;
+}
+.nav-link {
+    padding: 0px;
+}
+
+.navbar-light .navbar-toggler:focus {
+    color: white;}
+
+    .navbar-toggler:focus{
+        background-color: white;
+    }
+
+.navbarr ul{
+    padding: 0px;
+}
+.navbar ul li {
+    display:inline;
+}
+
+.navbarr ul li  a{
+    text-decoration: none;
+    color: #FFF !important;
+font-family: Josefin Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 27.2px;
+margin: 0px 22px;
+
+}
+.navbarr ul li  a:hover{
+    color:#0F0233 !important;
+}
+
+.tag-buy:hover {
+    color: #0F0233 !important;
+}
+
+
+.tag-buy {
+    border-radius: 31px;
+    background: linear-gradient(180deg, #86048D 0%, #D20F7E 100%);
+    padding: 7px 24px;
+    color: #FFF;
+font-family: Josefin Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 21px;
+text-transform: uppercase;
+}
+.tag-buy img{
+    padding-right: 2px;
+}
+
+
+/* cover */
+.cover{
+    background-image: url(../img/hero.png) ;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 661px;
+    padding: 0px;
+}
+/* .mr-marggin{
+    margin-right: 0px;
+} */
+
+.heading-find h1{
+    color: #FFF;
+text-align: center;
+font-family: Josefin Sans;
+font-size: 64px;
+font-style: normal;
+font-weight: 600;
+line-height: 71px; /* 32.813% */
+text-transform: uppercase;
+margin-top: 165px;
+display: flex;
+width: 161px;
+height: 35px;
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+
+}
+
+.lottery-cnic{
+    color: #FFF;
+    font-family: Josefin Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px; /* 87.5% */
+    text-transform: uppercase;
+    margin-top: 80px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+       -webkit-appearance: none;
+        margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.input-number input:focus-visible {
+    outline: white;}
+
+.input-number input{
+    border-style: inset;
+    border-color:white;
+    border-image:none;
+    width: 100%;
+    border-radius: 15px;
+background: #FFF;
+padding: 15px 35px;
+color: rgba(0, 0, 0, 0.57);
+font-family: Josefin Sans;
+font-size: 24px;
+font-style: normal;
+font-weight: 500;
+line-height: 21px;
+text-transform: uppercase;
+}
+
+.button-check{
+    width: 27%;
+    height: 48%;
+    margin-top: 52px;
+    border-radius: 31px;
+background: linear-gradient(180deg, #86048D 0%, #D20F7E 100%);
+box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.25);
+border-color: #86048D;
+color: #FFF;
+font-family: Josefin Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 13px; /* 150% */
+text-transform: uppercase;
+}
+
+
+.btn-check:focus+.btn, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+    color: white;
+}
+/* .bg-grident{
+    background-image: url(../img/car-light.png.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 590px;
+    
+} */
+.card-cover-bg {
+    margin-top: 57px;
+    width: 80%;
+    margin-left: 100px;
+}
+.card-cover-bg img{
+    width: 100%;
+}
+/* footer */
+
+.footer{
+    height: 236px;
+    background-color: #0F0233;
+}
+.line {
+color:white ;
+ height: 1px;
+  margin-top: 122px;
+ }
+
+.social-media{
+    margin: 25px 0px 21px 0px;
+    display: flex;
+    justify-content: end;
+}
+.social-media a{
+    text-decoration: none;
+    color: white;
+}
+.social-media img{
+    padding: 0px 20px;
+}
+.whatsapp-padding{
+   padding-right: 0px !important; 
+}
+.Copyright-lottery p{
+    color: #C4CBF9;
+    font-family: Josefin Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30.6px; 
+    padding: 30px 0px 0px;
+}
+
+
+/* media query */
+
+@media only screen and (min-width:991px)  {
+     .container-md, .container-sm {
+        max-width: 849px;
+    }
+}
+
+
+@media only screen and (min-width:280px) and (max-width: 991px) {  
+    
+    .card-cover-bg {
+        width: 80%;
+        margin-left: 41px;
+    }
+    .inner-header .customer-support {
+        margin: 12px 0px;
+    }
+    .navbarr ul li a:hover{
+        color: #D20F7E !important;
+    }
+    .heading-find h1 {
+        font-size: 50px;
+        line-height: 51px;
+        margin-top: 102px;
+        width: 127px;
+    }
+    .heading-find{
+        margin-top: 74px;
+    }
+    .bg-grident{
+        margin-top: 74px;
+    }
+    .lottery-cnic {
+        font-size: 18px;
+        line-height: 10px;
+        margin-top: 65px;
+    }
+    .input-number input {
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+    .footer {
+        height: 127px;}
+
+        .line {
+            margin-top: 21px;
+        }
+#navbarSupportedContent{
+    background-color:#390455 ;
+    padding: 8px 5px;
+}
+.navbar-nav{
+    margin-bottom: 0px !important;
+}
+.tag-buy{
+    margin-left: 10px;
+}
+.button-check {
+    width: 46%;
+    height: 65%;
+    margin-top: 34px;
+    font-size: 14px;
+    line-height: 7px;
+}
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .cover {
+        height: 440px;}
+
+    .heading-find {
+        margin-top: 0px;
+    }
+    .button-check  {
+        width: 37%;
+        height: 71%;
+        margin-top: 28px;
+        margin-bottom: 0px;
+    }
+    .Copyright-lottery p {
+        font-size: 13px;
+        padding: 22px 0px 0px;
+    }
+    .card-cover-bg img{
+        display: none;
+    }
+    .social-media img {
+        padding: 0px 10px;
+        width: 20%;
+        height: 30px;
+    }
+    .social-media {
+        margin: 19px 0px 0px 0px;
+    }
+    .whatsapp-padding {
+        padding-right: 7px !important;
+    }
+   
+}
+
+
+@media only screen and (min-width:280px) and (max-width: 575px) {
+    .cover {
+        height: 390px;}
+        .navbar-brand img {
+            width: 64%;
+        }
+    .inner-header .customer-support {
+        margin: 10px 0px;
+    }
+    .cover-heading-pading{
+        padding: 0px 56px;
+    }
+    .link {
+        font-size: 14px;
+        margin-right: 16px;
+    }
+    .arrow{
+        font-size: 14px;
+    }
+
+    .arrow img{
+        width: 11px;
+    }
+    .navbarr ul li a {
+        font-size: 12px;
+        margin: 0px 9px;
+   }
+   .tag-buy {
+    border-radius: 16px;
+    padding: 4px 7px;
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 0px;
+}
+.tag-buy img {
+    padding-right: 2px;
+    width: 15px;}
+    .heading-find h1 {
+        font-size: 35px;
+        line-height: 37px;
+        margin-top: 69px;
+        width:90px ;
+    }
+
+    .lottery-cnic {
+        font-size: 15px;
+        line-height: 10px;
+        margin-top: 46px;
+    }
+    .input-number input {
+        padding: 6px 9px;
+        font-size: 14px;
+    }
+    .heading-find {
+        margin-top: 0px;
+    }
+    .button-check {
+        margin-top: 23px;
+        width: 49%;
+    height: 95%;
+    font-size: 13px;
+    line-height: 3px;
+    }
+    .card-cover-bg img{
+        display: none;
+    }
+    .footer {
+        height: 147px;
+    }
+    .line {
+        margin-top: 8px;
+    }
+    .Copyright-lottery p {
+        font-size: 14px;
+}
+.social-media img {
+    /* padding: 0px 10px; */
+    /* width: 11%; */
+    height: 30px;
+}
+.social-media img {
+    padding: 0px 14px;
+}
+    .social-media {
+        margin: 14px 0px 16px 0px;
+        display: flex;
+        justify-content: center;
+    }
+    .Copyright-lottery{
+        display: flex;
+        justify-content: center;
+    }
+    .Copyright-lottery p {
+        margin-bottom: 0px;
+        padding: 17px 0px 0px;
+    }
+    .whatsapp-padding {
+        padding-right: 30px !important;
+    }
+
+}
+@media only screen and (min-width:280px) and (max-width: 381px) {
+
+.Copyright-lottery p {
+    margin-bottom: 0px;
+    padding: 1px 0px 0px;
+    font-size: 12px;
+
+}
+.navbarr{
+    padding: 0px;
+}
+.heading-find h1 {
+    font-size: 28px;
+    line-height: 38px;
+    margin-top: 82px;
+    width: 70px;
+}
+.lottery-cnic  {
+    font-size: 13px;
+    line-height: 3px;
+    margin-top: 38px;}
+    .input-number input {
+        padding: 4px 7px;
+        font-size: 12px;
+    }
+    .cover-heading-pading {
+        padding: 0px 21px;
+    }
+    .button-check {
+        width: 49%;
+        height: 81%;
+        font-size: 11px;}
+        .card-cover-bg img{
+            display: none;
+        }
+    .social-media img {
+        padding: 0px 10px;
+        /* width: 18%; */
+        height: 28px;
+    }
+    .whatsapp-padding {
+        padding-right: 6px !important;
+    }
+    .tag-buy {
+        padding: 5px 7px;
+        line-height: 14px;
+    }
+    .footer {
+        height: 117px;
+    }
+
+}
+@media (min-width: 1200px) { }
+@media (min-width: 1400px) { }
