@@ -54,4 +54,9 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/commission-details-updates', 'CommissionDetailsUpdates');
     Route::get('/contact-msg', 'ContactMsges');
     Route::get('/contact-msg-delete/{id}', 'ContactMsgDelete');
+    // Partner Routes ==
+    Route::post('/create-partner', 'CreatePartner');
+    Route::get('/edit-partner/{id}', 'EditPartner');
+    Route::post('/update-partner', 'UpdatePartner');
+    Route::get('/delete-partner/{id}', 'DeletePartner');
 });

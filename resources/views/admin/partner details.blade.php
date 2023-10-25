@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="assets/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="assets/admin/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
+       {{-- ====Sweet Aleart ==== --}}
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ <script src="assets/js/sweetalert.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -22,6 +27,21 @@
 </head>
 
 <body>
+
+  @if(Session::has('info'))
+  <script>
+    swal("Info!", "{{ Session::get('info') }}", "info");
+    </script>
+  @endif
+  
+  @if(Session::has('success'))
+  <script>
+    swal("Success!", "{{ Session::get('success') }}", "success");
+    </script>
+  @endif
+  
+
+
   <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
@@ -53,30 +73,33 @@
                     <th>F.Name</th>
                     <th>CNIC</th>
                     <th>D-O-B</th>
-                    <th>Transaction ID*</th>
                     <th>Address</th>
+                    <th>Password</th>
                     <th>Profile Picture</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @if (!empty($partners))
+                  @foreach ($partners as $item)
+
                   <tr>
-                    <td>Shamas</td>
-                    <td>Nadeem</td>
-                    <td>35505-1004306-8</td>
-                    <td>Laab Lo</td>
-                    <td>W78564</td>
-                    <td>Ja ma ni dasna</td>
-                    <td><img src="assets/admin/images/logo-mini.svg" alt=""></td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->father_name}}</td>
+                    <td>{{$item->cnic}}</td>
+                    <td>{{$item->dob}}</td>
+                    <td>{{$item->address}}</td>
+                    <td>{{$item->password}}</td>
+                    <td><img src="assets/partner/img/{{$item->profile}}" style="width: 50px; height: 50px; border-radius: 100%;" alt=""></td>
+                    <td><a href="/edit-partner/{{$item->id}}"  class="btn btn-success">Edit</a>
+                      <a href="/delete-partner/{{$item->id}}"  class="btn btn-danger">Delete</a></td>
+                    
                   </tr>
-                  <tr>
-                    <td>Shamas</td>
-                    <td>Nadeem</td>
-                    <td>35505-1004306-8</td>
-                    <td>Laab Lo</td>
-                    <td>W78564</td>
-                    <td>Ja ma ni dasna</td>
-                    <td><img src="assets/admin/images/logo-mini.svg" alt=""></td>
-                  </tr>
+                      
+                  @endforeach
+                      
+                  @endif
+                 
                 </tbody>
             </div>
           </div>

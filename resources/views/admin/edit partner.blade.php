@@ -5,6 +5,7 @@
 <!-- Mirrored from demo.bootstrapdash.com/royalui-free/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Oct 2023 11:20:01 GMT -->
 
 <head>
+  <base href="/public">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,35 +63,36 @@
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Add Partner</h4>
+                  <h4 class="font-weight-bold mb-0">Update Partner</h4>
                 </div>
 
               </div>
             </div>
           </div>
 
-          <form action="/create-partner" method="POST" enctype="multipart/form-data" class="row g-3">
+          <form action="/update-partner" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Name</label>
-              <input type="text" name="name" class="form-control" id="inputEmail4" required>
+              <input type="text" name="name" value="{{$partner->name}}" class="form-control" id="inputEmail4" required>
+              <input type="hidden" name="partner_id" value="{{$partner->id}}" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Father Name</label>
-              <input type="text" name="father_name" class="form-control" id="inputPassword4" required>
+              <input type="text" name="father_name" value="{{$partner->father_name}}" class="form-control" id="inputPassword4" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">CNIC</label>
-              <input type="number" name="cnic" class="form-control" id="inputEmail4" required>
+              <input type="number" name="cnic" value="{{$partner->cnic}}" class="form-control" id="inputEmail4" required>
             </div>
 
             <div class="col-md-6">
               <label for="inputCity" class="form-label">D-O-B</label>
-              <input type="date" name="dob" class="form-control" id="inputCity" required>
+              <input type="date" name="dob" value="{{$partner->dob}}" class="form-control" id="inputCity" required>
             </div>
             <div class="col-md-6">
-              <label for="inputCity" class="form-label">Paasword*</label>
-              <input type="text" name="password" class="form-control" id="inputCity" required>
+              <label for="inputCity" class="form-label">New Paasword*</label>
+              <input type="text" name="password"  class="form-control" id="inputCity" >
             </div>
             <div class="col-md-6">
               <label for="inputCity" class="form-label">Profile Picture</label>
@@ -98,7 +100,7 @@
             </div>
             <div class="col-md-12">
               <label for="inputCity" class="form-label">Address</label>
-              <input type="text" name="address" class="form-control" id="inputCity" required>
+              <input type="text" name="address" value="{{$partner->address}}" class="form-control" id="inputCity" required>
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary w-100">Submit</button>
