@@ -5,6 +5,7 @@
 <!-- Mirrored from demo.bootstrapdash.com/royalui-free/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Oct 2023 11:20:01 GMT -->
 
 <head>
+  <base href="/public">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,42 +59,43 @@
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Add Loutrey</h4>
+                  <h4 class="font-weight-bold mb-0">Update Loutrey</h4>
                 </div>
 
               </div>
             </div>
           </div>
 
-          <form action="/create-lottery" method="POST" enctype="multipart/form-data" class="row g-3">
+          <form action="/update-lottery" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Loutrey Code</label>
-              <input type="text" name="code" maxlength="8" class="form-control" placeholder="8 digit code maximum" id="inputEmail4" required>
+              <input type="text" name="code" value="{{$lottery->code}}" maxlength="8" class="form-control" placeholder="8 digit code maximum" id="inputEmail4" required>
+              <input type="hidden" name="lottery_id" value="{{$lottery->id}}"   class="form-control"   id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Loutrey Name</label>
-              <input type="text" name="name" class="form-control" id="inputPassword4" required>
+              <input type="text" name="name" value="{{$lottery->name}}" class="form-control" id="inputPassword4" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Price</label>
-              <input type="number" name="price" class="form-control" id="inputEmail4" required>
+              <input type="number" name="price" value="{{$lottery->price}}" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Picture</label>
-              <input type="file" name="image" class="form-control" id="inputEmail4"  accept=".jpg,.jpeg,.png" required>
+              <input type="file" name="image" class="form-control" id="inputEmail4"  accept=".jpg,.jpeg,.png" >
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Loutrey Cliam Date Time</label>
-              <input type="datetime-local" name="claim_time" class="form-control" id="inputEmail4" required>
+              <input type="datetime-local" value="{{$lottery->claim_date_time}}" name="claim_time" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Total Loutries</label>
-              <input type="number" name="total_lotries" class="form-control" placeholder="1467" id="inputEmail4" required>
+              <input type="number" name="total_lotries" value="{{$lottery->total_lotteries}}" class="form-control" placeholder="1467" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Partner Commission(%)</label>
-              <input type="number" min="1" name="partner_commission" onKeyPress="if(this.value.length==2) return false" class="form-control" placeholder="25" id="inputEmail4" required>
+              <input type="number" min="1" value="{{$lottery->partner_commission}}" name="partner_commission" onKeyPress="if(this.value.length==2) return false" class="form-control" placeholder="25" id="inputEmail4" required>
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary w-100">Submit</button>

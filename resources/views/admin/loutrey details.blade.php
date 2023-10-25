@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="assets/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="assets/admin/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
+         {{-- ====Sweet Aleart ==== --}}
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ <script src="assets/js/sweetalert.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -22,6 +27,21 @@
 </head>
 
 <body>
+
+  @if(Session::has('info'))
+  <script>
+    swal("Info!", "{{ Session::get('info') }}", "info");
+    </script>
+  @endif
+  
+  @if(Session::has('success'))
+  <script>
+    swal("Success!", "{{ Session::get('success') }}", "success");
+    </script>
+  @endif
+  
+
+
   <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
@@ -52,28 +72,36 @@
                     <th>Loutery Code</th>
                     <th>Loutery Name</th>
                     <th>Price</th>
+                    <th>Claim Time</th>
+                    <th>Total Lotteries</th>
+                    <th>Remaining Lotteries</th>
+                    <th>Partner Commission(%)</th>
                     <th>Picture</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Acctions</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @if (!empty($lotteries))
+                  @foreach ($lotteries as $item)
                   <tr>
-                    <td>782349</td>
-                    <td>Booj lo</td>
-                    <td>45000</td>
-                    <td><img src="assets/admin/images/logo-mini.svg" alt=""></td>
-                    <td><button type="button" class="btn btn-success">Approved</button></td>
-                    <td><button type="button" class="btn btn-danger">Decline</button></td>
+                    <td>{{$item->code}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->price}}</td>
+                    <td>{{$item->claim_date_time}}</td>
+                    <td>{{$item->total_lotteries}}</td>
+                    <td>{{$item->remain_lotteries}}</td>
+                    <td>{{$item->partner_commission}}</td>
+                    {{-- <td>{{now()->format('Y-m-d H:i:s')}}</td> --}}
+                    <td><img src="assets/lottery/img/{{$item->image}}" style="width: 50px; height: 50px;" alt=""></td>
+                    <td><a  href="/edit-lottery/{{$item->id}}" class="btn btn-success">Edit</a>
+                      <a    href="/delete-lottery/{{$item->id}}"  class="btn btn-danger">Delete</a></td>
+                    
                   </tr>
-                  <tr>
-                    <td>782349</td>
-                    <td>Booj lo</td>
-                    <td>45000</td>
-                    <td><img src="assets/admin/images/logo-mini.svg" alt=""></td>
-                    <td><button type="button" class="btn btn-success">Approved</button></td>
-                    <td><button type="button" class="btn btn-danger">Decline</button></td>
-                  </tr>
+                      
+                  @endforeach
+                      
+                  @endif
+                 
                 </tbody>
             </div>
           </div>

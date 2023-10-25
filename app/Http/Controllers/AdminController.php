@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
 use App\Models\Contact;
+use App\Models\Lottery;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,8 @@ class AdminController extends Controller
     }
 
     public function LotteryDetails() {
-        return view('admin.loutrey details');
+        $lotteries = Lottery::all();
+        return view('admin.loutrey details', compact('lotteries'));
     }
 
 
@@ -88,6 +90,9 @@ class AdminController extends Controller
        return redirect()->back()->with('info',"Contact Msg Deleted");
     }
 
+
+
+// Partner Functions Start ======================
 
     public function CreatePartner(Request $request) {
         $cnic = User::where(['cnic'=>$request->cnic])->first();
@@ -210,6 +215,142 @@ class AdminController extends Controller
         
         
     }
+
+// Partner Functions END ======================
+
+
+// Lottery Functions Start ======================
+
+public function CreateLottery(Request $request)   {
+
+    $code = Lottery::where(['code'=>$request->code])->first();
+    if (!empty($code)) {
+        return redirect()->back()->with('error',"On This Code Lottery Allready Created!");
+    }
+
+    if($request->hasfile('image')){
+        $image = $request->image;
+        $imageName =  $image->getClientOriginalName();
+        $image->move(public_path().'/assets/lottery/img', $imageName);
+        $imageData = $imageName;
+
+        $lottery = Lottery::create([
+            'code'=>$request->code,
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'claim_date_time'=>$request->claim_time,
+            'total_lotteries'=>$request->total_lotries,
+            'remain_lotteries'=>$request->total_lotries,
+            'partner_commission'=>$request->partner_commission,
+            'image'=>$imageData,
+        ]);
+
+    }else{
+        $lottery = Lottery::create([
+            'code'=>$request->code,
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'claim_date_time'=>$request->claim_time,
+            'total_lotteries'=>$request->total_lotries,
+            'remain_lotteries'=>$request->total_lotries,
+            'partner_commission'=>$request->partner_commission,
+        ]);
+    }
+
+    if ($lottery) {
+        return redirect()->back()->with('success',"Lottery Created Successfully!");
+    }else{
+        return redirect()->back()->with('error',"SomeThing Rong, Try Again!");
+    }
+
+    
+}
+
+
+public function EditLottery($id)   {
+
+    $lottery = Lottery::find($id);
+    return view('admin.edit loutrey', compact('lottery'));
+   
+}
+
+public function UpdateLottery(Request $request)   {
+
+    $lottery = Lottery::find($request->lottery_id);
+
+    if ($lottery->code != $request->code) {
+        $code = Lottery::where('code','!=',$request->code)->first();
+        if (!empty($code)) {
+            return redirect()->back()->with('error',"New Lottery Code Entered Allready in Use!");
+        }
+        
+    }
+    $remain_lottery = $lottery->total_lotteries - $lottery->remain_lotteries ;
+    if ($request->total_lotries < $remain_lottery) {
+        return redirect()->back()->with('error',"Much Lottries Claimed, Entered Invalid Lotteries!");
+        
+    }
+
+    if($request->hasFile('image'))
+    {
+        if ($lottery->image != null) {
+            $path = public_path().'/assets/lottery/img'.$lottery->image;
+        
+            if(File::exists($path))
+            {
+                File::delete($path);
+            }
+
+        }
+     
+        // Upload and Store Images
+         // Upload and save image
+                if($request->hasfile('image')){
+                    $image = $request->image;
+                    $imageName =  $image->getClientOriginalName();
+                    $image->move(public_path().'/assets/lottery/img', $imageName);
+                    $imageData = $imageName;
+                  
+            }
+            $lottery->image = $imageData;
+
+}
+$new_remain = $request->total_lotries -  $remain_lottery ;
+
+$lottery->code = $request->code;
+$lottery->name = $request->name;
+$lottery->price = $request->price;
+$lottery->claim_date_time = $request->claim_time;
+$lottery->total_lotteries = $request->total_lotries;
+$lottery->remain_lotteries = $new_remain;
+$lottery->partner_commission = $request->partner_commission;
+$lottery->update();
+
+if ($lottery) {
+    return redirect()->to('/lottery-details')->with('success',"Lottery Updated Successfully!");
+}else{
+    return redirect()->back()->with('error',"SomeThing Rong, Try Again!");
+}
+
+    
+}
+
+public function DeleteLottery($id)   {
+
+    $lottery = Lottery::find($id);
+    $lottery->delete();
+    return redirect()->back()->with('info',"Lottery Delete!");
+    
+    
+}
+
+// Lottery Functions END ======================
+
+
+
+
+
+
 
 
 
