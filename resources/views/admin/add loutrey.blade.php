@@ -91,7 +91,7 @@
               <label for="inputEmail4" class="form-label">Total Loutries</label>
               <input type="number" name="total_lotries" class="form-control" placeholder="1467" id="inputEmail4" required>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="inputEmail4" class="form-label">Partner Commission(%)</label>
               <input type="number" min="1" name="partner_commission" onKeyPress="if(this.value.length==2) return false" class="form-control" placeholder="25" id="inputEmail4" required>
             </div>

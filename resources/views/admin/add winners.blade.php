@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="assets/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="assets/admin/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
+         {{-- ====Sweet Aleart ==== --}}
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ <script src="assets/js/sweetalert.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -22,6 +27,21 @@
 </head>
 
 <body>
+
+  
+  @if(Session::has('error'))
+  <script>
+    swal("Error!", "{{ Session::get('error') }}", "error");
+    </script>
+  @endif
+  
+  @if(Session::has('success'))
+  <script>
+    swal("Success!", "{{ Session::get('success') }}", "success");
+    </script>
+  @endif
+
+
   <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
@@ -46,35 +66,33 @@
             </div>
           </div>
 
-          <form class="row g-3">
+          <form action="/create-winner" method="POST" enctype="multipart/form-data" class="row g-3">
+           @csrf
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Image</label>
-              <input type="file" class="form-control" id="inputEmail4">
+              <input type="file" name="image" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Loutery Code</label>
-              <input type="text" class="form-control" id="inputPassword4">
+              <input type="text" name="code" maxlength="8" class="form-control" placeholder="8 digit code maximum" id="inputPassword4" required>
             </div>
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Loutrey Name</label>
-              <input type="text" class="form-control" id="inputEmail4">
+              <label for="inputEmail4" class="form-label">Loutrey Number</label>
+              <input type="text" name="number" class="form-control" placeholder="A12bc34" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Price</label>
-              <input type="text" class="form-control" id="inputEmail4">
+              <input type="text" name="price" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputCity" class="form-label">Winner Name</label>
-              <input type="datetime" class="form-control" id="inputCity">
+              <input type="text" name="winner_name" class="form-control" id="inputCity" required>
             </div>
             <div class="col-md-6">
-              <label for="inputCity" class="form-label">Phone Number</label>
-              <input type="datetime" class="form-control" id="inputCity">
-            </div>
-            <div class="col-md-12">
               <label for="inputCity" class="form-label">Address</label>
-              <input type="datetime" class="form-control" id="inputCity">
+              <input type="text" name="address" class="form-control" id="inputCity" required>
             </div>
+          
             
             <div class="col-12">
               <button type="submit" class="btn btn-primary w-100">Submit</button>

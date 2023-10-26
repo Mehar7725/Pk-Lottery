@@ -64,4 +64,9 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/edit-lottery/{id}', 'EditLottery');
     Route::post('/update-lottery', 'UpdateLottery');
     Route::get('/delete-lottery/{id}', 'DeleteLottery');
+    // Winner Routes ======
+    Route::post('/create-winner', 'CreateWinner');
+    Route::get('/edit-winner/{id}', 'EditWinner');
+    Route::post('/update-winner', 'UpdateWinner');
+    Route::get('/delete-winner/{id}', 'DeleteWinner');
 });

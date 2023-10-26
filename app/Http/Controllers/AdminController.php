@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Contact;
 use App\Models\Lottery;
 use App\Models\User;
+use App\Models\Winner;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -58,7 +59,8 @@ class AdminController extends Controller
 
 
     public function WinnerDetails() {
-        return view('admin.winners details');
+        $winner = Winner::all();
+        return view('admin.winners details', compact('winner'));
     }
 
 
@@ -347,7 +349,126 @@ public function DeleteLottery($id)   {
 // Lottery Functions END ======================
 
 
+// Winners Functions Start ======================
 
+public function CreateWinner(Request $request)   {
+
+    $code = Winner::where(['code'=>$request->code])->first();
+    if (!empty($code)) {
+        return redirect()->back()->with('error',"On This Code Lottery Winner Allready Created!");
+    }
+
+    if($request->hasfile('image')){
+        $image = $request->image;
+        $imageName =  $image->getClientOriginalName();
+        $image->move(public_path().'/assets/winner/img', $imageName);
+        $imageData = $imageName;
+
+        $winner = Winner::create([
+            'code'=>$request->code,
+            'number'=>$request->number,
+            'price'=>$request->price,
+            'winner_name'=>$request->winner_name,
+            'address'=>$request->address,
+            'image'=>$imageData,
+        ]);
+
+    }else{
+        $winner = Winner::create([
+            'code'=>$request->code,
+            'number'=>$request->number,
+            'price'=>$request->price,
+            'winner_name'=>$request->winner_name,
+            'address'=>$request->address,
+        ]);
+    }
+
+    if ($winner) {
+        return redirect()->back()->with('success',"Lottery Winner Created Successfully!");
+    }else{
+        return redirect()->back()->with('error',"SomeThing Rong, Try Again!");
+    }
+
+    
+}
+
+
+
+
+public function EditWinner($id)   {
+
+    $winner = Winner::find($id);
+    return view('admin.edit winner', compact('winner'));
+   
+}
+
+public function UpdateWinner(Request $request)   {
+
+    $winner = Winner::find($request->winner_id);
+
+    if ($winner->code != $request->code) {
+        $code = Winner::where('code','!=',$request->code)->first();
+        if (!empty($code)) {
+            return redirect()->back()->with('error',"New Lottery Winner Code Entered Allready in Use!");
+        }
+        
+    }
+  
+    if($request->hasFile('image'))
+    {
+        if ($winner->image != null) {
+            $path = public_path().'/assets/winner/img'.$winner->image;
+        
+            if(File::exists($path))
+            {
+                File::delete($path);
+            }
+
+        }
+     
+        // Upload and Store Images
+         // Upload and save image
+                if($request->hasfile('image')){
+                    $image = $request->image;
+                    $imageName =  $image->getClientOriginalName();
+                    $image->move(public_path().'/assets/winner/img', $imageName);
+                    $imageData = $imageName;
+                  
+            }
+            $winner->image = $imageData;
+
+}
+
+$winner->code = $request->code;
+$winner->number = $request->number;
+$winner->price = $request->price;
+$winner->winner_name = $request->winner_name;
+$winner->address = $request->address;
+$winner->update();
+
+if ($winner) {
+    return redirect()->to('/winner-details')->with('success',"Lottery Winner Updated Successfully!");
+}else{
+    return redirect()->back()->with('error',"SomeThing Rong, Try Again!");
+}
+
+    
+}
+
+
+
+public function DeleteWinner($id)   {
+
+    $winner = Winner::find($id);
+    $winner->delete();
+    return redirect()->back()->with('info',"Lottery Winner Delete!");
+    
+    
+}
+
+
+
+// Winners Functions END ======================
 
 
 

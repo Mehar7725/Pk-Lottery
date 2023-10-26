@@ -5,6 +5,7 @@
 <!-- Mirrored from demo.bootstrapdash.com/royalui-free/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Oct 2023 11:20:01 GMT -->
 
 <head>
+  <base href="/public">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="assets/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="assets/admin/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
-           {{-- ====Sweet Aleart ==== --}}
+         {{-- ====Sweet Aleart ==== --}}
  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  <script src="assets/js/sweetalert.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -29,9 +30,9 @@
 <body>
 
   
-  @if(Session::has('info'))
+  @if(Session::has('error'))
   <script>
-    swal("Info!", "{{ Session::get('info') }}", "info");
+    swal("Error!", "{{ Session::get('error') }}", "error");
     </script>
   @endif
   
@@ -40,7 +41,6 @@
     swal("Success!", "{{ Session::get('success') }}", "success");
     </script>
   @endif
-  
 
 
   <div class="container-scroller">
@@ -60,46 +60,46 @@
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Winners Details</h4>
+                  <h4 class="font-weight-bold mb-0">Add Winners</h4>
                 </div>
+
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <thead class="bg-primary">
-                  <tr>
-                    <th>Image</th>
-                    <th>Loutery Code</th>
-                    <th>Loutrey Number</th>
-                    <th>Price</th>
-                    <th>Winner Name</th>
-                    <th>Address</th>
-                    <th>Acctions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @if (!empty($winner))
-                  @foreach ($winner as $item)
-                  <tr>
-                    <td><img src="assets/winner/img/{{$item->image}}" alt=""></td>
-                    <td>{{$item->code}}</td>
-                    <td>{{$item->number}}</td>
-                    <td>{{$item->price}}</td>
-                    <td>{{$item->winner_name}}</td>
-                    <td>{{$item->address}}</td>
-                    <td><a  href="/edit-winner/{{$item->id}}" class="btn btn-success">Edit</a>
-                      <a    href="/delete-winner/{{$item->id}}"  class="btn btn-danger">Delete</a></td>
-                  </tr>
-                      
-                  @endforeach
-                      
-                  @endif
-              
-                </tbody>
+
+          <form action="/update-winner" method="POST" enctype="multipart/form-data" class="row g-3">
+           @csrf
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Image</label>
+              <input type="file" name="image" class="form-control" id="inputEmail4" >
+              <input type="hidden" name="winner_id" value="{{$winner->id}}" class="form-control" id="inputEmail4" required>
             </div>
-          </div>
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Loutery Code</label>
+              <input type="text" name="code" value="{{$winner->code}}" maxlength="8" class="form-control" placeholder="8 digit code maximum" id="inputPassword4" required>
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Loutrey Number</label>
+              <input type="text" name="number" value="{{$winner->number}}" class="form-control" placeholder="A12bc34" id="inputEmail4" required>
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Price</label>
+              <input type="text" name="price" value="{{$winner->price}}" class="form-control" id="inputEmail4" required>
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Winner Name</label>
+              <input type="text" name="winner_name" value="{{$winner->winner_name}}" class="form-control" id="inputCity" required>
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Address</label>
+              <input type="text" name="address" value="{{$winner->address}}" class="form-control" id="inputCity" required>
+            </div>
+          
+            
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+          </form>
 
         </div>
         <!-- content-wrapper ends -->
