@@ -13,7 +13,10 @@ class AdminController extends Controller
 {
     //
     public function Dashboard() {
-        return view('admin.index');
+        $partner = User::where(['role'=>1])->count();
+        $visiter = User::where(['role'=>0])->count();
+        $winners = Winner::count();
+        return view('admin.index', compact('partner','visiter','winners'));
     }
 
     public function AddLottery() {
