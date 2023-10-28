@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,4 +27,55 @@ class HomeController extends Controller
         }
         
     }
+
+
+
+    public function Login()  {
+
+        
+        return view('partner.login');
+    }
+
+
+
+
+
+
+    public function LoginPartner(Request $request)  {
+
+        $user = User::where(['cnic'=>$request->cnic])->first();
+        if (empty($user)) {
+            return redirect()->back()->with('error',"CNIC Number is invelid!");
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect()->back()->with('error',"Entered In Correct Password!");
+        }
+        if ($user->role == 0) {
+            return redirect()->back()->with('error',"CNIC Number is invelid!");
+        }
+        Auth::login($user);
+
+        if ($user->role == 1) {
+            return redirect('/partner');
+        } elseif($user->role == 2) {
+            return redirect('/admin-dashboard');
+        }
+        
+        
+        
+    }
+
+
+
+       // ========= Logout Function =====
+    
+       public function logout(){
+        // Session::Flush();
+        Auth::logout();
+
+        return redirect()->to('/login');
+    }
+
+
 }

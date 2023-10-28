@@ -24,6 +24,7 @@ class User extends Authenticatable
         'dob',
         'profile',
         'address',
+        'reffral_id',
         'password',
         'role',
     ];

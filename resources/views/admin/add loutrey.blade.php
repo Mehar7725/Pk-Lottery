@@ -84,8 +84,8 @@
               <input type="file" name="image" class="form-control" id="inputEmail4"  accept=".jpg,.jpeg,.png" required>
             </div>
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Loutrey Cliam Date Time</label>
-              <input type="datetime-local" name="claim_time" class="form-control" id="inputEmail4" required>
+              <label for="inputEmail4" class="form-label">Loutrey Cliam Date </label>
+              <input type="date" name="claim_time" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Total Loutries</label>

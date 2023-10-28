@@ -21,7 +21,7 @@
 <body>
     <!-- header start -->
     <!-- header start -->
-    <x-visiter-nav/>
+    <x-partner-nav/>
 <!-- header-end -->
 <!-- header-end -->
 <!-- cover start-->

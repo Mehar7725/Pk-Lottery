@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('price')->nullable();
             $table->string('image')->nullable();
-            $table->dateTime('claim_date_time')->nullable();
+            $table->date('claim_date_time')->nullable();
             $table->string('total_lotteries')->nullable();
             $table->string('remain_lotteries')->nullable();
             $table->string('partner_commission')->nullable();

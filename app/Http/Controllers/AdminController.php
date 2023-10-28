@@ -8,11 +8,22 @@ use App\Models\Lottery;
 use App\Models\User;
 use App\Models\Winner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     //
     public function Dashboard() {
+
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
+
         $partner = User::where(['role'=>1])->count();
         $visiter = User::where(['role'=>0])->count();
         $winners = Winner::count();
@@ -20,10 +31,28 @@ class AdminController extends Controller
     }
 
     public function AddLottery() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
         return view('admin.add loutrey');
     }
 
     public function LotteryDetails() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
         $lotteries = Lottery::all();
         return view('admin.loutrey details', compact('lotteries'));
     }
@@ -31,11 +60,30 @@ class AdminController extends Controller
 
 
     public function AddPartner() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
+
         return view('admin.add partner');
     }
 
 
     public function PartnerDetails() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
         $partners = User::where(['role'=>1])->get();
         return view('admin.partner details', compact('partners'));
     }
@@ -55,6 +103,15 @@ class AdminController extends Controller
 
 
     public function AddWinner() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
         return view('admin.add winners');
     }
 
@@ -62,6 +119,15 @@ class AdminController extends Controller
 
 
     public function WinnerDetails() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
         $winner = Winner::all();
         return view('admin.winners details', compact('winner'));
     }
@@ -82,6 +148,15 @@ class AdminController extends Controller
 
 
     public function ContactMsges() {
+
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
 
         $msges = Contact::latest()->get();
         return view('admin.contact msg', compact('msges'));
@@ -146,6 +221,15 @@ class AdminController extends Controller
     }
 
     public function EditPartner($id)   {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
 
         $partner = User::find($id);
         
@@ -273,6 +357,15 @@ public function CreateLottery(Request $request)   {
 
 
 public function EditLottery($id)   {
+    
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+
+    if (Auth::user()->role != 2) {
+        return redirect('/');
+    }
+    
 
     $lottery = Lottery::find($id);
     return view('admin.edit loutrey', compact('lottery'));
@@ -399,6 +492,15 @@ public function CreateWinner(Request $request)   {
 
 
 public function EditWinner($id)   {
+    
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+
+    if (Auth::user()->role != 2) {
+        return redirect('/');
+    }
+    
 
     $winner = Winner::find($id);
     return view('admin.edit winner', compact('winner'));

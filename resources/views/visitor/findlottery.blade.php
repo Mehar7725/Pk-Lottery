@@ -20,7 +20,17 @@
 </head>
 <body>
     <!-- header start -->
+    @if (Auth::user())
+    @if (Auth::user()->role = 0)
     <x-visiter-nav/>
+    @else
+    <x-partner-nav/>
+    @endif
+   
+    @else
+    <x-visiter-nav/>
+    @endif
+    
 <!-- header-end -->
 <!-- cover start-->
 <div class="container-fluid cover">

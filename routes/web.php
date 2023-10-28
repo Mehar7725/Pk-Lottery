@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\VisiterController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 // Home Controller
 Route::controller(HomeController::class)->group(function () {
     Route::post('/contact-msg-forwerd', 'ContactMsgForwerd');
+    Route::get('/login', 'Login');
+    Route::post('/login-partner', 'LoginPartner');
+    Route::get('/logout', 'logout');
 });
 
 
@@ -36,6 +40,22 @@ Route::controller(VisiterController::class)->group(function () {
     Route::get('/our-lottery', 'OurLottery');
     Route::get('/shipping-detail', 'ShippingDetails');
     Route::get('/contact-us', 'ContactUs');
+});
+
+
+// Partner Controller
+Route::controller(PartnerController::class)->group(function () {
+  
+    Route::get('/partner', 'Partner');
+    Route::get('/buy-lottery', 'BuyLottery');
+    Route::get('/update-profile', 'UpdateProfile');
+    Route::post('/update-profile-action', 'UpdateProfileAction');
+    Route::get('/update-password', 'UpdatePassword');
+    Route::post('/update-password-action', 'UpdatePasswordAction');
+    Route::get('/ship-lottery/{id}', 'ShipLottery');
+    Route::post('/ship-lottery-confirm', 'ShipLotteryConfirm');
+    Route::get('/total-members', 'TotalMembers');
+    Route::get('/commission', 'Commission');
 });
 
 // AdminController

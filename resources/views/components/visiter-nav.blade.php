@@ -2,7 +2,7 @@
     <div class="container inner-header ">
         <div class="row">
             <div class="col-md-12  customer-support  ">
-               <a href="#" class=" link"> Customer Support</a>
+               <a href="/contact-us" class=" link"> Customer Support</a>
                <!-- <div class="dropdown arrow">
                 <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Eng
@@ -33,9 +33,12 @@
                           <li class="nav-item">
                             <a class="nav-link" href="/winners">WINNER</a>
                           </li>
+                          @if (Auth::user())
                           <li class="nav-item">
                             <a class="nav-link" href="/find-lottery">FIND LOTTERY</a>
                           </li>
+                          @endif
+                        
                           <li class="nav-item">
                             <a class="nav-link" href="/contact-us">CONTACT US</a>
                           </li>
