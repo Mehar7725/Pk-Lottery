@@ -288,7 +288,32 @@ public function Commission()  {
     
 }
 
+public function FindLottery()  {
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+    if (Auth::user()->role != 1) {
+        return redirect('/');
+    }
+    
+    return view('partner.findlottery');
+}
 
+
+
+public function MyLottery(Request $request)  {
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+    if (Auth::user()->role != 1) {
+        return redirect('/');
+    }
+    $lotteries = BuyLottery::where(['cnic'=>$request->cnic, 'reffral_id'=>Auth::user()->id])->get();
+    if ($lotteries->count() <= 0) {
+        return redirect()->back()->with('error',"This CNIC Have not Any Lottery Purchased!");
+    }
+    return view('partner.ourlottery', compact('lotteries'));
+}
 
 
 

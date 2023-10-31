@@ -35,13 +35,15 @@
                           </li>
                           @if (Auth::user())
                           <li class="nav-item">
-                            <a class="nav-link" href="/find-lottery">FIND LOTTERY</a>
+                            <a class="nav-link" href="/our-lottery">LOTTERY</a>
                           </li>
                           @endif
                         
                           <li class="nav-item">
                             <a class="nav-link" href="/contact-us">CONTACT US</a>
                           </li>
+
+                          
                           
                          
                         </ul>

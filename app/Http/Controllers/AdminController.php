@@ -27,7 +27,8 @@ class AdminController extends Controller
         $partner = User::where(['role'=>1])->count();
         $visiter = User::where(['role'=>0])->count();
         $winners = Winner::count();
-        return view('admin.index', compact('partner','visiter','winners'));
+        $lotteries = Lottery::count();
+        return view('admin.index', compact('partner','visiter','winners','lotteries'));
     }
 
     public function AddLottery() {

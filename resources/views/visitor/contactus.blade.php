@@ -63,7 +63,7 @@
 
     <!-- header start -->
     @if (Auth::user())
-    @if (Auth::user()->role = 0)
+    @if (Auth::user()->role == 0)
     <x-visiter-nav/>
     @else
     <x-partner-nav/>

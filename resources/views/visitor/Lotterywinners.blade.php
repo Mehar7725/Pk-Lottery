@@ -25,7 +25,7 @@
     <!-- header start -->
 
     @if (Auth::user())
-    @if (Auth::user()->role = 0)
+    @if (Auth::user()->role == 0)
     <x-visiter-nav/>
     @else
     <x-partner-nav/>
@@ -70,7 +70,7 @@
                            </div>
                            <div class="col col-md-6 col-sm-6 card-right">
                                <b class="text-light">Lottery Value</b>
-                               <span> ${{$item->price}}</span>
+                               <span> Rs.{{$item->price}}</span>
                            
                            </div>
                        </div>

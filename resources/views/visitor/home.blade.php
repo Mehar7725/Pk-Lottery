@@ -9,8 +9,12 @@
 <!--boostrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!--boostrap css -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+     {{-- JQuery CDN ====== --}}
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <!-- custom css -->
@@ -22,6 +26,9 @@
 
 </head>
 <body>
+
+    
+
     <!-- header start -->
 
     <x-visiter-nav/>
@@ -33,20 +40,47 @@
 <div class="container mr-marggin">
     <div class="row cover-heading-pading">
         <div class="col-md-7 heading-find  input-number ">
-          <form action="">
+          {{-- <form action="/visiter-login" method="POST">
+            @csrf --}}
            <h1>FIND REGISTRATION</h1>
            <p class="lottery-cnic">ENTER YOUR CNIC</p>
-           <input type="number"class="" placeholder="35***********" >
+           <input type="number" id="cnic" name="cnic" class="" placeholder="35***********" >
       <!-- popup start -->
 
       <div class="container-fluid p-0 m-0">
         <div class="container main p-0 m-0">
             <div class="row ">
                 <div class="col-md-12 block13">
-                    <button type="button" class=" btn button-check  text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">Check Here</button>
+                    <button type="button" id="log-visiter" class=" btn button-check  text-center" >Check Here</button>
           
                 </div>
-              </form>
+              {{-- </form> --}}
+              {{-- Congrates Model ========== Start --}}
+              <div class="modal fade" id="exampleModalcongrates" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog popupmodal">
+                    <div class="modal-content popup-content">
+                        <button type="button" class="btn-close cloze" data-bs-dismiss="modal" aria-label="Close">
+                          <img src="assets/visitor/img/cloze.png" alt="">
+                        </button>              
+                        
+            
+                    
+                        <div class="modal-body popup-cross">
+                        <img src="assets/visitor/img/congratulation.png" alt="">
+                      </div>
+            
+                        <div class="modal-body-2 paragraph-2 mb-0">
+                            <p>Congratulation</p>
+                        </div>
+
+                       <div class="popup-para mb-0">
+                          <p>Now you part of our best lotter website.</p>
+                       </div>
+                    </div>
+                </div>
+            </div>
+              {{-- Congrates Model ========== End --}}
+              {{-- Opps Model ========== Start --}}
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog popupmodal">
                       <div class="modal-content popup-content">
@@ -70,6 +104,7 @@
                       </div>
                   </div>
               </div>
+               {{-- Opps Model ========== END --}}
              </div>
         </div>
     </div>
@@ -109,7 +144,49 @@
 <x-visiter-footer/>
 <!-- footer END-->
 
+<script>
+    $('#log-visiter').click(function () { 
+        var cnic = $('#cnic').val();
+        if (cnic == null) {
+            return false;
+        }
 
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+    });
+
+     // Ajax Call
+     $.ajax({
+                    type: "POST",
+                    url: "/visiter-login",
+                    data:{cnic:cnic, _token: '{{csrf_token()}}'},
+                    dataType : 'json',
+                    success: function (response) {
+                        if(response.success == true){
+                            $('#exampleModalcongrates').css("display", "block");
+                      $('#exampleModalcongrates').addClass('show');
+                    } else if(response.error == true){
+                        $('#exampleModal').css("display", "block");
+                      $('#exampleModal').addClass('show');
+                    }
+                   
+                      
+                    }
+                });
+
+
+
+    });
+
+    $('.cloze').click(function () { 
+       $('#exampleModal').removeClass('show');
+       $('#exampleModal').css("display", "none");
+       location.reload();
+        
+    });
+</script>
 
 </body>
 </html>

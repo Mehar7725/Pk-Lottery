@@ -27,6 +27,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/contact-msg-forwerd', 'ContactMsgForwerd');
     Route::get('/login', 'Login');
     Route::post('/login-partner', 'LoginPartner');
+    Route::post('/visiter-login', 'VisiterLogin');
     Route::get('/logout', 'logout');
 });
 
@@ -36,7 +37,7 @@ Route::controller(HomeController::class)->group(function () {
 Route::controller(VisiterController::class)->group(function () {
     Route::get('/', 'Home');
     Route::get('/winners', 'Winners');
-    Route::get('/find-lottery', 'FindLottery');
+   
     Route::get('/our-lottery', 'OurLottery');
     Route::get('/shipping-detail', 'ShippingDetails');
     Route::get('/contact-us', 'ContactUs');
@@ -56,6 +57,8 @@ Route::controller(PartnerController::class)->group(function () {
     Route::post('/ship-lottery-confirm', 'ShipLotteryConfirm');
     Route::get('/total-members', 'TotalMembers');
     Route::get('/commission', 'Commission');
+    Route::get('/find-lottery', 'FindLottery');
+    Route::post('/my-lottery', 'MyLottery');
 });
 
 // AdminController

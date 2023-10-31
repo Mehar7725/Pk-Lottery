@@ -43,7 +43,7 @@
     <div class="container inner-header ">
         <div class="row">
             <div class="col-md-12  customer-support  ">
-               <a href="#" class=" link"> Customer Support</a>
+               <a href="/contact-us" class=" link"> Customer Support</a>
                <!-- <div class="dropdown arrow">
                 <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Eng

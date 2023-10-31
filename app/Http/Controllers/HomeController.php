@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BuyLottery;
 use App\Models\Contact;
+use App\Models\Lottery;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -61,6 +63,30 @@ class HomeController extends Controller
         } elseif($user->role == 2) {
             return redirect('/admin-dashboard');
         }
+        
+        
+        
+    }
+
+
+
+
+
+
+    public function VisiterLogin(Request $request)  {
+
+        $user = User::where(['cnic'=>$request->cnic, 'role'=>0])->first();
+        $lottery = BuyLottery::where(['cnic'=>$request->cnic])->first();
+        if (empty($user)) {
+            return response()->json(['error'=> true]);
+        }
+        if (empty($lottery)) {
+            return response()->json(['error'=> true]);
+        }
+
+        Auth::login($user);
+        return response()->json(['success'=> true]);
+       
         
         
         

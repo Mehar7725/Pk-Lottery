@@ -123,6 +123,10 @@
         <p class=" form-name">Shipping cost</p>
       <input type="number" name="cost" class=" form-input" value="{{$lottery->price}}"  placeholder="Rs.2000" value="Rs.2000" readonly required>
        </div>
+      <div class="col-md-6">
+        <p class=" form-name">Commission</p>
+      <input type="text" name="commission" class=" form-input" value="{{$lottery->partner_commission}}%"  placeholder="Rs.2000"  readonly >
+       </div>
      </div>
 
 

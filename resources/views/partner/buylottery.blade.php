@@ -71,11 +71,13 @@
                  <div class="card-detail ">
                      <div class="row card-mar">
                          <div class="col col-md-6 col-sm-6 card-left">
-                             <b class="text-light">{{$item->name}}</b> 
+                             <b class="text-light">{{$item->name}}</b>
+                             <b class="text-light " style="position: relative;top: 10px;">Commission({{$item->partner_commission}}%)
+                            </b>  
                          </div>
                          <div class="col col-md-6 col-sm-6 card-right">
                              
-                             <span> ${{$item->price}}</span>
+                             <span> Rs.{{$item->price}}</span>
                              <b class="text-light">Lottery Value</b>
                          </div>
                      </div>

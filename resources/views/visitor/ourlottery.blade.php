@@ -21,16 +21,9 @@
 </head>
 <body>
     <!-- header start -->
-    @if (Auth::user())
-    @if (Auth::user()->role = 0)
+    
     <x-visiter-nav/>
-    @else
-    <x-partner-nav/>
-    @endif
-   
-    @else
-    <x-visiter-nav/>
-    @endif
+
     
 <!-- header-end -->
 <!-- cover start-->
@@ -40,592 +33,122 @@
       <h1> OUR Lottery </h1>
 
       <div class="row">
-          <div class=" col-sm-4 col-md-4   ">
-              <div class="card Loutery-card" style="background-color:  #90090D;">
-                  <div class="card-img-head d-flex justify-content-center">
-                      <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
 
-                  </div>
-                  <div class="card-body card-details-loutery" style="background-color:#3a0405 ;">
-                      <div class="card-loutery text-center  align-items-center">
+        @if (!empty($buy_lotteries))
+        @foreach ($buy_lotteries as $item)
+        @php
+            $lottery = \App\Models\Lottery::find($item->lottery_id);
+        @endphp
+        @if (!empty($lottery))
 
-                         <p class="card-lottery-contest">Contest No:</p>
-                         <span B2T class="card-lottery-b2t">B2T</span>
-                     
-
-                      </div>
-                      <div class="card-detail ">
-                          <div class="row card-mar">
-                              <div class="col col-md-6 col-sm-6 card-left">
-                                  <b class="text-light">The Breeze
-                                    <br>  Zodiac IX </b> 
-                              </div>
-                              <div class="col col-md-6 col-sm-6 card-right">
-                                  <b class="text-light">Lottery Value</b>
-                                  <span> $200</span>
-                              
-                              </div>
-                          </div>
-
-<!-- 
-                          <div class="row">
-                              <div class="col col-md-6 col-sm-6 card-left">
-                                  <b class="text-light">Lottery Nmb.</b> <br>
-                                  <span>0b76c12</span>
-                              </div>
-                              <div class="col col-md-6 col-sm-6  card-rightr">
-                                  <b class="text-light ">Address</b> 
-                                  <span>Random#123 </span>
-                              </div>
-                          </div> -->
-                      </div>
-                      <hr style="color:lightgray">
-
-                     
-                   
-                      <div class="card-bottom-button">
-                          <a href="/shipping-detail"><button type="button" class="btn ">Get Loutery</button></a>
-                      </div> 
-                   
-                  </div>
-              </div>
-          </div>
-         
-         
-          <div class=" col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
+        <div class=" col-sm-4 col-md-4   ">
+            <div class="card Loutery-card" style="background-color:  #90090D;">
                 <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
+                    <img src="assets/lottery/img/{{$lottery->image}}" class="card-img-top img-fluid" alt="...">
 
                 </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
+                <div class="card-body card-details-loutery" style="background-color:#3a0405 ;">
                     <div class="card-loutery text-center  align-items-center">
 
                        <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
+                       <span B2T class="card-lottery-b2t">{{$lottery->code}}</span>
                    
 
                     </div>
                     <div class="card-detail ">
                         <div class="row card-mar">
                             <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
+                                <b class="text-light">{{$lottery->name}}</b> 
                             </div>
                             <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
                                 <b class="text-light">Lottery Value</b>
+                                <span>Rs.{{$lottery->price}}</span>
+                            
                             </div>
                         </div>
 
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
                     </div>
                     <hr style="color:lightgray">
-
-                   
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
-                 
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
-                </div>
-            </div>
-        </div>
-        <div class=" col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
-                <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
-
-                </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
-                    <div class="card-loutery text-center  align-items-center">
-
-                       <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
-                   
-
-                    </div>
-                    <div class="card-detail ">
-                        <div class="row card-mar">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
-                            </div>
-                            <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
-                                <b class="text-light">Lottery Value</b>
-                            </div>
+                    @if ($item->status == 0)
+                       <!-- card Bottom  -->
+                       <div class="row card-botom">
+                        <div class="col col-md-4 col-sm-4 card-botom-day">
+                          
+                       <span>Pending</span>
+                    
+                    
                         </div>
+                        <div class="col col-md-8 col-sm-8 card-botom-timer "> 
+                           <span>{{$lottery->remain_lotteries}}</span> <br>
+                           <p class="m-0">  Remaining</p>
 
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
+                        </div>
                     </div>
-                    <hr style="color:lightgray">
+              
 
+                    
+                    @elseif($item->status == 1)
+
+                    @php
+                                    
+                    $datetimestart = date('Y-m-d');
+                   $to = \Carbon\Carbon::parse($lottery->claim_date_time);
+                   $from = \Carbon\Carbon::parse($datetimestart);
+                   $days = $to->diffInDays($from);
+                @endphp
+                @if ($lottery->claim_date_time <= $datetimestart)
+                <div class="card-bottom-button">
+                    <a href="/shipping-detail/{{$item->id}}"><button type="button" class="btn ">Get Loutery</button></a>
+                </div> 
+                @else
+                <!-- card Bottom  -->
+                <div class="row card-botom">
+                    <div class="col col-md-4 col-sm-4 card-botom-day">
+                        <span>{{$days}}D</span>
+                    </div>
+                    <div class="col col-md-8 col-sm-8 card-botom-timer "> 
+                       <span>{{$lottery->remain_lotteries}}</span> <br>
+                       <p class="m-0">  Remaining</p>
+
+                    </div>
+                </div>
+
+                @endif
+                    
+
+                    @elseif($item->status == 2)
+                    <div class="card-bottom-button">
+                        <button type="button" class="btn ">Claimed</button> 
+                     </div> 
+                    @elseif($item->status == 3)
+                    <div class="card-bottom-button">
+                        <button type="button" class="btn ">Not Approved</button> 
+                     </div> 
                    
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
+                   
+                     @endif
+                  
                  
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
                 </div>
             </div>
-        </div>
-
        
-
-      </div>
-
-       <div class="row">
-        <div class=" col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
-                <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
-
-                </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
-                    <div class="card-loutery text-center  align-items-center">
-
-                       <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
-                   
-
-                    </div>
-                    <div class="card-detail ">
-                        <div class="row card-mar">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
-                            </div>
-                            <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
-                                <b class="text-light">Lottery Value</b>
-                            </div>
-                        </div>
-
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
-                    </div>
-                    <hr style="color:lightgray">
-
-                   
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
-                 
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
-                </div>
-            </div>
-        </div>
-
-        <div class=" col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
-                <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
-
-                </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
-                    <div class="card-loutery text-center  align-items-center">
-
-                       <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
-                   
-
-                    </div>
-                    <div class="card-detail ">
-                        <div class="row card-mar">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
-                            </div>
-                            <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
-                                <b class="text-light">Lottery Value</b>
-                            </div>
-                        </div>
-
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
-                    </div>
-                    <hr style="color:lightgray">
-
-                   
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
-                 
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
-                <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
-
-                </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
-                    <div class="card-loutery text-center  align-items-center">
-
-                       <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
-                   
-
-                    </div>
-                    <div class="card-detail ">
-                        <div class="row card-mar">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
-                            </div>
-                            <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
-                                <b class="text-light">Lottery Value</b>
-                            </div>
-                        </div>
-
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
-                    </div>
-                    <hr style="color:lightgray">
-
-                   
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
-                 
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
-                </div>
-            </div>
-        </div>
-       </div>
-
-       <div class="row">
-        <div class=" col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
-                <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
-
-                </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
-                    <div class="card-loutery text-center  align-items-center">
-
-                       <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
-                   
-
-                    </div>
-                    <div class="card-detail ">
-                        <div class="row card-mar">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
-                            </div>
-                            <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
-                                <b class="text-light">Lottery Value</b>
-                            </div>
-                        </div>
-
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
-                    </div>
-                    <hr style="color:lightgray">
-
-                   
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
-                 
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
-                </div>
-            </div>
-        </div>
-
-        <div class=" col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
-                <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
-
-                </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
-                    <div class="card-loutery text-center  align-items-center">
-
-                       <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
-                   
-
-                    </div>
-                    <div class="card-detail ">
-                        <div class="row card-mar">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
-                            </div>
-                            <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
-                                <b class="text-light">Lottery Value</b>
-                            </div>
-                        </div>
-
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
-                    </div>
-                    <hr style="color:lightgray">
-
-                   
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
-                 
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
-                </div>
-            </div>
-        </div>
-
-        <div class=" col-sm-4 col-md-4 ">
-            <div class="card Loutery-card" style="background-color:    #3a0405 ;">
-                <div class="card-img-head d-flex justify-content-center">
-                    <img src="assets/visitor/img/car.png" class="card-img-top img-fluid" alt="...">
-
-                </div>
-                <div class="card-body card-details-loutery" style="background-color:#90090D;">
-                    <div class="card-loutery text-center  align-items-center">
-
-                       <p class="card-lottery-contest">Contest No:</p>
-                       <span B2T class="card-lottery-b2t">B2T</span>
-                   
-
-                    </div>
-                    <div class="card-detail ">
-                        <div class="row card-mar">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">The Breeze
-                                    <br>  Zodiac IX 
-                                    </b> 
-                            </div>
-                            <div class="col col-md-6 col-sm-6 card-right">
-                                
-                                <span> $200</span>
-                                <b class="text-light">Lottery Value</b>
-                            </div>
-                        </div>
-
-<!-- 
-                        <div class="row">
-                            <div class="col col-md-6 col-sm-6 card-left">
-                                <b class="text-light">Lottery Nmb.</b> <br>
-                                <span>0b76c12</span>
-                            </div>
-                            <div class="col col-md-6 col-sm-6  card-rightr">
-                                <b class="text-light ">Address</b> 
-                                <span>Random#123 </span>
-                            </div>
-                        </div> -->
-                    </div>
-                    <hr style="color:lightgray">
-
-                   
-                           <!-- card Bottom  -->
-                            <div class="row card-botom">
-                                <div class="col col-md-4 col-sm-4 card-botom-day">
-                                    <span>5d</span>
-                                </div>
-                                <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                                   <span>9086</span> <br>
-                                   <p class="m-0">  Remaining</p>
-
-                                </div>
-                            </div>
-
-
-                 
-                    <!-- <div class="card-bottom-button">
-                        <button type="button" class="btn btn-primary">Get Loutery</button>
-                    </div> 
-                  -->
-                </div>
-            </div>
-        </div>
-       </div>
+            
+        @endif
+            
+        @endforeach
+            
+        @endif
+    </div>
+  </div>
+  </div>
 
 
 
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-md-12 btn-col">
       <button> LOAD MORE</button>
     </div>
-  </div>
+  </div> --}}
 
   </div>
 </div>
