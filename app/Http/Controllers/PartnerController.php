@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BuyLottery;
+use App\Models\CompanyDetail;
 use App\Models\Lottery;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,7 @@ class PartnerController extends Controller
         }
         
         $lotteries = Lottery::where('remain_lotteries', '>' , 0)->get();
+
         return view('partner.index', compact('lotteries'));
     }
 
@@ -268,8 +270,9 @@ public function TotalMembers()  {
         return redirect('/');
     }
     
+    $company_detail = CompanyDetail::first();
     
-    return view('partner.total membars');
+    return view('partner.total membars', compact('company_detail'));
     
 }
 
@@ -283,8 +286,9 @@ public function Commission()  {
         return redirect('/');
     }
     
+    $company_detail = CompanyDetail::first();
     
-    return view('partner.commision');
+    return view('partner.commision', compact('company_detail'));
     
 }
 

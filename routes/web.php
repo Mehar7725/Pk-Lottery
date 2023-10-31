@@ -92,4 +92,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/edit-winner/{id}', 'EditWinner');
     Route::post('/update-winner', 'UpdateWinner');
     Route::get('/delete-winner/{id}', 'DeleteWinner');
+    // Company Details ======
+    Route::get('/company-details', 'CompanyDetails');
+    Route::post('/update-company-details', 'UpdateCompanyDetails');
 });

@@ -48,9 +48,12 @@
             malicious, is detected on your system.
           </p>
         </div>
-        <div class="col-md-5 bg-grident">
+        <div class="col-md-5 bg-grident" style="overflow: hidden;">
           <div class="card-cover-bg">
-            <img src="assets/partner/img/car-card.png" alt="">
+            @if (!empty($company_detail))
+                    
+            <img src="assets/company/img/{{$company_detail->add}}" alt="">
+            @endif
           </div>
         </div>
       </div>

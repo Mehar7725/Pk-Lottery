@@ -21,7 +21,13 @@
 
                 <nav class="navbar navbar-expand-lg navbar-light ">
                     <div class="container-fluid p-0">
-                      <a class="navbar-brand" href="/"><img src="assets/visitor/img/logo.png" alt=""></a>
+                      @php
+                      $company_details = \App\Models\CompanyDetail::first();
+                  @endphp
+                  @if (!empty($company_details))
+                      
+                  <a class="navbar-brand " href="/"><img src="assets/company/img/{{$company_details->logo}}" alt=""></a>
+                  @endif
                       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>

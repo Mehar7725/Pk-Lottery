@@ -7,6 +7,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/company-details">
+          <i class="ti-layout-grid2 menu-icon"></i>
+          <span class="menu-title">Company Details</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
           aria-controls="ui-basic">
           <i class="ti-palette menu-icon"></i>
@@ -152,6 +158,12 @@
         <a class="nav-link" href="/contact-msg">
           <i class="ti-write menu-icon"></i>
           <span class="menu-title">Contact Us</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">
+          <i class="ti-power-off menu-icon"></i>
+          <span class="menu-title">LogOut</span>
         </a>
       </li>
     </ul>

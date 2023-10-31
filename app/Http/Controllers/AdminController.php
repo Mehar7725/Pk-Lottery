@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyDetail;
 use Illuminate\Support\Facades\File;
 use App\Models\Contact;
 use App\Models\Lottery;
@@ -575,6 +576,149 @@ public function DeleteWinner($id)   {
 
 
 // Winners Functions END ======================
+// Company Details Functions Start ======================
+public function CompanyDetails()   {
+      
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+
+    if (Auth::user()->role != 2) {
+        return redirect('/');
+    }
+    
+    $company_detail = CompanyDetail::first();
+    return view('admin.company details', compact('company_detail'));
+}
+public function UpdateCompanyDetails(Request $request)   {
+      
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+
+    if (Auth::user()->role != 2) {
+        return redirect('/');
+    }
+    
+    $company_detail = CompanyDetail::first();
+    
+    
+    
+    if (!empty($company_detail)) {
+        if($request->hasFile('logo_image')  || $request->hasFile('add_image'))
+        {
+            if ($request->logo_image != null) {
+                if ($company_detail->logo != null) {
+                    $path = public_path().'/assets/company/img'.$company_detail->logo;
+                
+                    if(File::exists($path))
+                    {
+                        File::delete($path);
+                    }
+        
+                }
+             
+                // Upload and Store Images
+                 // Upload and save image
+                        if($request->hasfile('logo_image')){
+                            $image = $request->logo_image;
+                            $imageName =  $image->getClientOriginalName();
+                            $image->move(public_path().'/assets/company/img', $imageName);
+                            $imageData_logo = $imageName;
+                          
+                    }
+                    $company_detail->logo = $imageData_logo;
+            }
+            if ($request->add_image != null) {
+                if ($company_detail->add != null) {
+                    $path = public_path().'/assets/company/img'.$company_detail->add;
+                
+                    if(File::exists($path))
+                    {
+                        File::delete($path);
+                    }
+        
+                }
+             
+                // Upload and Store Images
+                 // Upload and save image
+                        if($request->hasfile('add_image')){
+                            $image = $request->add_image;
+                            $imageName =  $image->getClientOriginalName();
+                            $image->move(public_path().'/assets/company/img', $imageName);
+                            $imageData_add = $imageName;
+                          
+                    }
+                    $company_detail->add = $imageData_add;
+            }
+       
+    
+    }
+    
+    $company_detail->facebook = $request->facebook;
+    $company_detail->instagram = $request->instagram;
+    $company_detail->whatsapp = $request->whatsapp;
+    $company_detail->update();
+    }else{
+
+
+        if($request->hasFile('logo_image') || $request->hasFile('add_image'))
+        {
+            
+          
+                 // Upload and save image
+                        if($request->hasfile('logo_image')){
+                            $image_logo = $request->logo_image;
+                            $imageName_logo =  $image_logo->getClientOriginalName();
+                            $image_logo->move(public_path().'/assets/company/img', $imageName_logo);
+                            $imageData_logo = $imageName_logo;
+                          
+                    }
+           
+           
+              
+                 // Upload and save image
+                        if($request->hasfile('add_image')){
+                            $image_add = $request->add_image;
+                            $imageName_add =  $image_add->getClientOriginalName();
+                            $image_add->move(public_path().'/assets/company/img', $imageName_add);
+                            $imageData_add = $imageName_add;
+                          
+                    }
+           
+
+            $company_detail = CompanyDetail::create([
+                'logo'=>$imageData_logo,
+                'add'=>$imageData_add,
+                'facebook'=>$request->facebook,
+                'instagram'=>$request->instagram,
+                'whatsapp'=>$request->whatsapp,
+            ]);
+       
+    
+    }else{
+
+           $company_detail = CompanyDetail::create([
+        'facebook'=>$request->facebook,
+        'instagram'=>$request->instagram,
+        'whatsapp'=>$request->whatsapp,
+    ]);
+    }
+
+ 
+
+
+    }
+  
+    
+if ($company_detail) {
+    return redirect()->back()->with('success',"Company Details Updated Successfully!");
+}else{
+    return redirect()->back()->with('error',"SomeThing Rong, Try Again!");
+}
+
+}
+// Company Details Functions END ======================
 
 
 

@@ -15,10 +15,12 @@
                 <!-- <img src="img/fb.png" alt="">
                 <img src="img/insta.png" alt="">
                 <img src="img/wa.png" alt="" class="whatsapp-padding"> -->
-
-           <a href="#"><img src="assets/visitor/img/fb.png" alt=""></a>
-               <a href="#"> <img src="assets/visitor/img/insta.png" alt=""></a>
-                <a href="#"><img src="assets/visitor/img/wa.png" alt="" class="whatsapp-padding"></a>
+                @php 
+                $company_details = \App\Models\CompanyDetail::first();
+            @endphp
+           <a target="__" href="@if(!empty($company_details)){{$company_details->facebook}}@endif"><img src="assets/visitor/img/fb.png" alt=""></a>
+               <a target="__" href="@if(!empty($company_details)){{$company_details->instagram}}@endif"> <img src="assets/visitor/img/insta.png" alt=""></a>
+                <a target="__" href="https://wa.me/@if(!empty($company_details)){{$company_details->whatsapp}}@endif?text=I Want Buy Lottery, Please give me details. How I Buy!" ><img src="assets/visitor/img/wa.png" alt="" class="whatsapp-padding"></a>
             </div>
         </div>
     </div>
