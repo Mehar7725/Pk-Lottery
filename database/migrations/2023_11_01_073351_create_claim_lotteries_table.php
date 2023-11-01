@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buy_lotteries', function (Blueprint $table) {
+        Schema::create('claim_lotteries', function (Blueprint $table) {
             $table->id();
+            $table->string('buy_id')->nullable();
             $table->string('name')->nullable();
             $table->string('father_name')->nullable();
             $table->string('cnic')->nullable();
@@ -30,8 +31,6 @@ return new class extends Migration
             $table->string('transaction_id')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('price')->nullable();
-            $table->date('claim_date_time')->nullable();
-            $table->string('partner_commission')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
@@ -42,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buy_lotteries');
+        Schema::dropIfExists('claim_lotteries');
     }
 };

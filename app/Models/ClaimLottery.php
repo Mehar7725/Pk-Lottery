@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BuyLottery extends Model
+class ClaimLottery extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'buy_id',
         'name',
         'father_name',
         'cnic',
@@ -26,8 +27,6 @@ class BuyLottery extends Model
         'transaction_id',
         'address',
         'price',
-        'claim_date_time',
-        'partner_commission',
         'status',
     ];
 }

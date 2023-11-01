@@ -89,7 +89,7 @@
                                             $days = $to->diffInDays($from);
                                          @endphp
                                          @if ($item->claim_date_time <= $datetimestart)
-                                         <span> Claim</span>
+                                         <span>Instant Claim</span>
                                          @else
                                          <span>{{$days}}D</span>
                                          @endif

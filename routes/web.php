@@ -39,7 +39,8 @@ Route::controller(VisiterController::class)->group(function () {
     Route::get('/winners', 'Winners');
    
     Route::get('/our-lottery', 'OurLottery');
-    Route::get('/shipping-detail', 'ShippingDetails');
+    Route::get('/shipping-detail/{id}', 'ShippingDetails');
+    Route::post('/shipping-confirm', 'ShippingConfirm');
     Route::get('/contact-us', 'ContactUs');
 });
 
@@ -68,8 +69,15 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/lottery-details', 'LotteryDetails');
     Route::get('/add-partner', 'AddPartner');
     Route::get('/partner-details', 'PartnerDetails');
-    Route::get('/lottery-approvel', 'LotteryApprovel');
-    Route::get('/lottery-approved-details', 'LotteryApprovedDetails');
+    Route::get('/partner-pending-lotteries', 'PartnerPendingLotteries');
+    Route::get('/partner-approved-lotteries', 'PartnerApprovedLotteries');
+    Route::get('/partner-claimed-lotteries', 'PartnerClaimedLotteries');
+    Route::get('/partner-claim-pending-lotteries', 'PartnerClaimedPendingLotteries');
+    Route::get('/partner-decline-lotteries', 'PartnerDeclineLotteries');
+    Route::get('/partner-claim-decline-lotteries', 'PartnerClaimDeclineLotteries');
+    Route::get('/visiter-pending-lotteries', 'VisiterPendingLotteries');
+    Route::get('/visiter-approved-lotteries', 'VisiterApprovedLotteries');
+    Route::get('/visiter-decline-lotteries', 'VisiterDeclineLotteries');
     Route::get('/add-winner', 'AddWinner');
     Route::get('/winner-details', 'WinnerDetails');
     Route::get('/partner-re-details', 'PartnerReDetails');
@@ -95,4 +103,12 @@ Route::controller(AdminController::class)->group(function () {
     // Company Details ======
     Route::get('/company-details', 'CompanyDetails');
     Route::post('/update-company-details', 'UpdateCompanyDetails');
+    // Partner Lottery =====
+    Route::get('/partner-lottery-approve/{id}', 'PartnerLotteryApprove');
+    Route::get('/partner-lottery-decline/{id}', 'PartnerLotteryDecline');
+    Route::get('/partner-lottery-delete/{id}', 'PartnerLotteryDelete');
+    // Visiter Lottery =====
+    Route::get('/visiter-lottery-approve/{id}', 'VisiterLotteryApprove');
+    Route::get('/visiter-lottery-decline/{id}', 'VisiterLotteryDecline');
+    Route::get('/visiter-lottery-delete/{id}', 'VisiterLotteryDelete');
 });

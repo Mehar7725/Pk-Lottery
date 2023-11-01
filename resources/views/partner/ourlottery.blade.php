@@ -37,37 +37,33 @@
 
         @if (!empty($lotteries))
         @foreach ($lotteries as $item)
-        @php
-        $lottery = \App\Models\Lottery::find($item->lottery_id);
-    @endphp
 
-    @if (!empty($lottery))
 
     <div class=" col-sm-4 col-md-4 ">
         <div class="card Loutery-card" style="background-color:    #3a0405 ;">
             <div class="card-img-head d-flex justify-content-center">
-                <img src="assets/lottery/img/{{$lottery->image}}" class="card-img-top img-fluid" alt="...">
+                <img src="assets/lottery/img/{{$item->lottery_image}}" class="card-img-top img-fluid" alt="...">
 
             </div>
             <div class="card-body card-details-loutery" style="background-color:#90090D;">
                 <div class="card-loutery text-center  align-items-center">
 
                    <p class="card-lottery-contest">Contest No:</p>
-                   <span B2T class="card-lottery-b2t">{{$lottery->code}}</span>
+                   <span B2T class="card-lottery-b2t">{{$item->lottery_code}}</span>
                
 
                 </div>
                 <div class="card-detail ">
                     <div class="row card-mar">
                         <div class="col col-md-6 col-sm-6 card-left">
-                            <b class="text-light">{{$lottery->name}}
+                            <b class="text-light">{{$item->lottery_name}}
                                 </b> 
-                            <b class="text-light " style="position: relative;top: 10px;">Commission({{$lottery->partner_commission}}%)
+                            <b class="text-light " style="position: relative;top: 10px;">Commission({{$item->partner_commission}}%)
                                 </b> 
                         </div>
                         <div class="col col-md-6 col-sm-6 card-right">
                             
-                            <span> Rs.{{$lottery->price}}</span>
+                            <span> Rs.{{$item->price}}</span>
                             <b class="text-light">Lottery Value</b>
                         </div>
                     </div>
@@ -79,80 +75,70 @@
                 @if ($item->status == 0)
                     
                        <!-- card Bottom  -->
-                       <div class="row card-botom">
-                        <div class="col col-md-4 col-sm-4 card-botom-day">
-                            <span>Pending</span>
-                        </div>
-                        <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                           <span>{{$lottery->remain_lotteries}}</span> <br>
-                           <p class="m-0">  Remaining</p>
-
-                        </div>
-                    </div>
+                       <div class="card-bottom-button">
+                        <button type="button" class="btn ">Pending Approvel</button> 
+                     </div> 
 
                     @elseif($item->status == 1)
 
                     @php
                                     
                     $datetimestart = date('Y-m-d');
-                   $to = \Carbon\Carbon::parse($lottery->claim_date_time);
+                   $to = \Carbon\Carbon::parse($item->claim_date_time);
                    $from = \Carbon\Carbon::parse($datetimestart);
                    $days = $to->diffInDays($from);
                 @endphp
 
-                @if ($lottery->claim_date_time <= $datetimestart)
+                @if ($item->claim_date_time <= $datetimestart)
                     
-                <div class="row card-botom">
-                    <div class="col col-md-12 col-sm-12 card-botom-day">
-                        <span>Claim Lottery</span>
-                    </div>
-                    
-                </div>
+               
+            <div class="card-bottom-button">
+                <button type="button" class="btn ">Claim Lottery by Visiter</button> 
+             </div> 
 
                 @else
 
                   <!-- card Bottom  -->
                   <div class="row card-botom">
-                    <div class="col col-md-4 col-sm-4 card-botom-day">
-                        <span>{{$days}}D</span>
+                    <div class="col col-md-12 col-sm-12 card-botom-day">
+                        <span>{{$days}} Days For Claim</span>
                     </div>
-                    <div class="col col-md-8 col-sm-8 card-botom-timer "> 
-                       <span>{{$lottery->remain_lotteries}}</span> <br>
-                       <p class="m-0"> Remaining</p>
-
-                    </div>
+                    
                 </div>
 
                 @endif
 
                 @elseif($item->status == 2)
-
-                <div class="row card-botom">
-                    <div class="col col-md-12 col-sm-12 card-botom-day">
-                        <span>Claimed</span>
-                    </div>
-                    
-                </div>
-
+                <div class="card-bottom-button">
+                    <button type="button" class="btn ">Lottery Claimed</button> 
+                 </div> 
                 @elseif($item->status == 3)
-
-                <div class="row card-botom">
-                    <div class="col col-md-12 col-sm-12 card-botom-day">
-                        <span>Not Approved</span>
-                    </div>
-                    
-                </div>
+                <div class="card-bottom-button">
+                    <button type="button" class="btn ">Claim in Pending</button> 
+                 </div> 
+             
+                @elseif($item->status == 4)
+                <div class="card-bottom-button">
+                    <button type="button" class="btn ">Not Approved</button> 
+                 </div> 
+             
+                 
+                @elseif($item->status == 5)
+                <div class="card-bottom-button">
+                    <button type="button" class="btn "> Claim Declined</button> 
+                 </div> 
+               
 
                 @endif
 
                
 
-            </div>
+        </div>
         </div>
     </div>
 
         
-    @endif
+   
             
         @endforeach
             

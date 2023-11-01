@@ -21,10 +21,10 @@ class PartnerController extends Controller
         }
 
         if (Auth::user()->role != 1) {
-            return redirect('/');
+            return redirect('/'); 
         }
         
-        $lotteries = Lottery::where('remain_lotteries', '>' , 0)->get();
+        $lotteries = Lottery::where('remain_lotteries', '>' , 0)->take(10)->latest()->get();
 
         return view('partner.index', compact('lotteries'));
     }
@@ -40,7 +40,7 @@ class PartnerController extends Controller
             return redirect('/');
         }
         
-        $lotteries = Lottery::where('remain_lotteries', '>' , 0)->get();
+        $lotteries = Lottery::where('remain_lotteries', '>' , 0)->latest()->get();
         return view('partner.buylottery', compact('lotteries'));
     }
 
@@ -221,7 +221,7 @@ class PartnerController extends Controller
 
          
           
-  
+  $get_lottery = Lottery::find($request->lottery_id);
 
 
         $buy_lottery = BuyLottery::create([
@@ -230,8 +230,11 @@ class PartnerController extends Controller
             'cnic'=> $request->cnic,
             'lottery_code'=> $request->lottery_code,
             'lottery_id'=> $request->lottery_id,
+            'lottery_name'=> $get_lottery->name,
+            'lottery_image'=> $get_lottery->image,
             'reffral_id'=> Auth::user()->id,
             'reffral_name'=> Auth::user()->name,
+            'reffral_cnic'=> Auth::user()->cnic,
             'dob'=> $request->dob,
             'cnic_front'=> $imageData_front,
             'cnic_back'=> $imageData_back,
@@ -239,6 +242,7 @@ class PartnerController extends Controller
             'transaction_id'=> $request->trans_id,
             'address'=> $request->address,
             'price'=> $request->cost,
+            'partner_commission'=> $request->commission,
         ]);
 
 

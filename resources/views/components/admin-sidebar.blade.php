@@ -43,20 +43,39 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basicg" aria-expanded="false"
+          aria-controls="ui-basic2">
+          <i class="ti-palette menu-icon"></i>
+          <span class="menu-title">Partner Lottery </span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basicg">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/partner-pending-lotteries">Pending Lotteries</a>
+            <li class="nav-item"> <a class="nav-link" href="/partner-approved-lotteries">Approved Lotteries</a>
+            <li class="nav-item"> <a class="nav-link" href="/partner-claimed-lotteries">Claimed Lotteries</a>
+            <li class="nav-item"> <a class="nav-link" href="/partner-claim-pending-lotteries">Claim Pending Lotteries</a>
+            <li class="nav-item"> <a class="nav-link" href="/partner-decline-lotteries">Decline Lotteries</a>
+            <li class="nav-item"> <a class="nav-link" href="/partner-claim-decline-lotteries">Claim Decline Lotteries</a>
+            </li>
+     
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false"
           aria-controls="ui-basic2">
           <i class="ti-palette menu-icon"></i>
-          <span class="menu-title">Visitor Approval</span>
+          <span class="menu-title">Visiter Lottery </span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="ui-basic2">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="/lottery-approvel">Lottery
-                Approval</a>
+            <li class="nav-item"> <a class="nav-link" href="/visiter-pending-lotteries">Pending Lotteries</a>
+            <li class="nav-item"> <a class="nav-link" href="/visiter-approved-lotteries">Approved Lotteries</a>
+            <li class="nav-item"> <a class="nav-link" href="/visiter-decline-lotteries">Decline Lotteries</a>
             </li>
-            <li class="nav-item"> <a class="nav-link" href="/lottery-approved-details">Lottery
-                Approved
-                Details</a></li>
+     
           </ul>
         </div>
       </li>

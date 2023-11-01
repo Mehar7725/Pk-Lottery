@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BuyLottery;
+use App\Models\ClaimLottery;
 use App\Models\CompanyDetail;
 use Illuminate\Support\Facades\File;
 use App\Models\Contact;
@@ -55,7 +57,7 @@ class AdminController extends Controller
             return redirect('/');
         }
         
-        $lotteries = Lottery::all();
+        $lotteries = Lottery::latest()->get();
         return view('admin.loutrey details', compact('lotteries'));
     }
 
@@ -91,13 +93,150 @@ class AdminController extends Controller
     }
 
 
-    public function LotteryApprovel() {
-        return view('admin.lottery approval');
+    public function PartnerPendingLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = BuyLottery::where(['status'=>0])->latest()->get();
+        $status = 0 ;
+        return view('admin.partner-lottery', compact('lotteries', 'status'));
     }
 
 
 
+    public function PartnerApprovedLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = BuyLottery::where(['status'=>1])->latest()->get();
+        $status = 1 ;
+        return view('admin.partner-lottery', compact('lotteries', 'status'));
+    }
+
+
+
+    public function PartnerClaimedLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = BuyLottery::where(['status'=>2])->latest()->get();
+        $status = 2 ;
+        return view('admin.partner-lottery', compact('lotteries', 'status'));
+    }
+
+
+
+    public function PartnerClaimedPendingLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = BuyLottery::where(['status'=>3])->latest()->get();
+        $status = 3 ;
+        return view('admin.partner-lottery', compact('lotteries', 'status'));
+    }
+
+
+
+    public function PartnerDeclineLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = BuyLottery::where(['status'=>4])->latest()->get();
+        $status = 4 ;
+        return view('admin.partner-lottery', compact('lotteries', 'status'));
+    }
+
+
+
+    public function PartnerClaimDeclineLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = BuyLottery::where(['status'=>5])->latest()->get();
+        $status = 5 ;
+        return view('admin.partner-lottery', compact('lotteries', 'status'));
+    }
+
+    
+    public function VisiterPendingLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = ClaimLottery::where(['status'=>0])->latest()->get();
+        $status = 0 ;
+        return view('admin.visiter-lottery', compact('lotteries', 'status'));
+    }
+
+
+    
+    public function VisiterApprovedLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = ClaimLottery::where(['status'=>1])->latest()->get();
+        $status = 1 ;
+        return view('admin.visiter-lottery', compact('lotteries', 'status'));
+    }
+
+
+
+    
+    public function VisiterDeclineLotteries() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $lotteries = ClaimLottery::where(['status'=>2])->latest()->get();
+        $status = 2 ;
+        return view('admin.visiter-lottery', compact('lotteries', 'status'));
+    }
+
+
+
+
     public function LotteryApprovedDetails() {
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
         return view('admin.lottery approved details');
     }
 
@@ -427,6 +566,22 @@ $lottery->partner_commission = $request->partner_commission;
 $lottery->update();
 
 if ($lottery) {
+    $buy_lottery = BuyLottery::where(['lottery_id'=>$lottery->id, 'status'=>0])->get();
+    if (!empty($buy_lottery)) {
+        foreach ($buy_lottery as $key => $value) {
+            $value->price = $request->price ;
+            $value->claim_date_time = $request->claim_time ;
+            $value->update();
+        }
+    }
+    $buy_lottery = BuyLottery::where(['lottery_id'=>$lottery->id, 'status'=>1])->get();
+    if (!empty($buy_lottery)) {
+        foreach ($buy_lottery as $key => $value) {
+            $value->price = $request->price ;
+            $value->claim_date_time = $request->claim_time ;
+            $value->update();
+        }
+    }
     return redirect()->to('/lottery-details')->with('success',"Lottery Updated Successfully!");
 }else{
     return redirect()->back()->with('error',"SomeThing Rong, Try Again!");
@@ -719,6 +874,60 @@ if ($company_detail) {
 
 }
 // Company Details Functions END ======================
+// Partner Lottery Functions start ======================
+public function PartnerLotteryApprove($id)  {
+    
+    $lottery = BuyLottery::find($id);
+    $lottery->status = 1;
+    $lottery->update();
+    return redirect()->back()->with('success', "Partner Lottery Approved");
+}
+public function PartnerLotteryDecline($id)  {
+    
+    $lottery = BuyLottery::find($id);
+    $lottery->status = 4;
+    $lottery->update();
+    return redirect()->back()->with('info', "Partner Lottery Declined");
+}
+public function PartnerLotteryDelete($id)  {
+    
+    $lottery = BuyLottery::find($id);
+    $lottery->delete();
+    return redirect()->back()->with('info', "Partner Lottery Deleted");
+}
+// Partner Lottery Functions END ======================
+
+
+// Visiter Lottery Functions start ======================
+public function VisiterLotteryApprove($id)  {
+    
+    $lottery = ClaimLottery::find($id);
+    $lottery->status = 1;
+    $buy_lottery = BuyLottery::find($lottery->buy_id);
+    $buy_lottery->status = 2;
+    $buy_lottery->update();
+    $lottery->update();
+    return redirect()->back()->with('success', "Visiter Lottery Approved");
+}
+public function VisiterLotteryDecline($id)  {
+    
+    $lottery = ClaimLottery::find($id);
+    $lottery->status = 2;
+    $buy_lottery = BuyLottery::find($lottery->buy_id);
+    $buy_lottery->status = 5;
+    $buy_lottery->update();
+    $lottery->update();
+    return redirect()->back()->with('info', "Visiter Lottery Declined");
+}
+public function VisiterLotteryDelete($id)  {
+    
+    $lottery = ClaimLottery::find($id);
+    $lottery->delete();
+    return redirect()->back()->with('info', "Visiter Lottery Deleted");
+}
+// Visiter Lottery Functions END ======================
+
+
 
 
 

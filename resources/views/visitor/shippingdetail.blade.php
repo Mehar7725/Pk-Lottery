@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href="/public">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,11 @@
 <!--boostrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!--boostrap css -->
-
+  {{-- ====Sweet Aleart ==== --}}
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="assets/js/sweetalert.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -20,17 +25,18 @@
 
 </head>
 <body>
+
+        
+  @if(Session::has('error'))
+  <script>
+    swal("Error!", "{{ Session::get('error') }}", "error");
+    </script>
+  @endif
+
     <!-- header start -->
-    @if (Auth::user())
-    @if (Auth::user()->role == 0)
-    <x-visiter-nav/>
-    @else
-    <x-partner-nav/>
-    @endif
    
-    @else
     <x-visiter-nav/>
-    @endif
+  
     
 <!-- header-end -->
 <!-- cover start-->
@@ -48,66 +54,81 @@
 <div class="container shipping-form">
   
   
- <form action="">
+ <form action="/shipping-confirm" method="POST" enctype="multipart/form-data">
+  @csrf
   <div class="row">
     <div class="col-md-6">
      <p class=" form-name">Name</p>
-<input type="text" class=" form-input"  placeholder="Name">
+<input type="hidden" name="buy_id" class=" form-input" value="{{$lottery->id}}"  placeholder="Name" required>
+<input type="text" name="name" class=" form-input" value="{{$lottery->name}}"  placeholder="Name">
     </div>
     <div class="col-md-6">
      <p class=" form-name">Father Name</p>
-<input type="text" class=" form-input"  placeholder="Father Name">
+<input type="text" name="father_name" class=" form-input" value="{{$lottery->father_name}}"  placeholder="Father Name" required>
 </div>
  </div>
 
  <div class="row">
     <div class="col-md-6">
      <p class=" form-name">CNIC</p>
-<input type="number" class=" form-input"  placeholder="CNIC">
+<input type="number" name="cnic" class=" form-input"  value="{{$lottery->cnic}}" placeholder="CNIC" required>
     </div>
     <div class="col-md-6">
      <p class=" form-name">Lottery Code</p>
-<input type="number" class=" form-input"  placeholder="Lottery Code">
+<input type="number" name="lottery_code" class=" form-input" value="{{$lottery->lottery_code}}"  placeholder="Lottery Code" required>
+<input type="hidden" name="lottery_id" class=" form-input" value="{{$lottery->lottery_id}}"  placeholder="Lottery Code">
 </div>
  </div>
 
  <div class="row">
     <div class="col-md-6">
      <p class=" form-name">DOB</p>
-<input type="date" class=" form-input"  placeholder="DD/MM/YYYY" style="    color: gray;">
+<input type="date" name="dob" class=" form-input" value="{{$lottery->dob}}"  placeholder="DD/MM/YYYY" style="    color: gray;" required>
     </div>
     <div class="col-md-6">
      <p class=" form-name">CNIC Image Front</p>
-<input type="file" class=" form-input"  placeholder="CNIC Image Front">
+<input type="file" name="image_front" class=" form-input"  placeholder="CNIC Image Front" accept=".jpg,jpeg,.png" required>
 </div>
  </div>
 
  <div class="row">
     <div class="col-md-6">
      <p class=" form-name">CNIC Image Back</p>
-<input type="file" class=" form-input"  placeholder="CNIC Image Back">
+<input type="file" name="image_back" class=" form-input"  placeholder="CNIC Image Back" accept=".jpg,jpeg,.png" required>
     </div>
     <div class="col-md-6">
-     <p class=" form-name">Transaction ID</p>
-<input type="number" class=" form-input"  placeholder="Transaction ID">
+     <p class=" form-name">Transaction Image</p>
+<input type="file" name="trans_image" class=" form-input"  placeholder="Transaction ID" accept=".jpg,jpeg,.png" required>
 </div>
  </div>
  <div class="row">
     <div class="col-md-6">
-     <p class=" form-name">Referral Code</p>
-<input type="number" class=" form-input"  placeholder="Referral Code">
+     <p class=" form-name">Transaction ID</p>
+<input type="number" name="trans_id" class=" form-input"    placeholder="Referral Code"  required>
     </div>
     <div class="col-md-6">
      <p class=" form-name">Address</p>
-<input type="text" class=" form-input"  placeholder="Address">
+<input type="text" name="address" class=" form-input" value="{{$lottery->address}}"  placeholder="Address" required>
 </div>
+ </div>
+ <div class="row">
+    <div class="col-md-6">
+     <p class=" form-name">Shipping cost</p>
+<input type="number" name="price" class=" form-input" value="{{$lottery->price}}"   placeholder="Referral Code" required>
+    </div>
+    <div class="col-md-6">
+      <p class=" form-name">Reffral Name</p>
+ <input type="text" name="reffral_name" class=" form-input" value="{{$lottery->reffral_name}}"  placeholder="Address" readonly required>
+ <input type="hidden" name="reffral_cnic" class=" form-input" value="{{$lottery->reffral_cnic}}"  placeholder="Address" readonly>
+ <input type="hidden" name="reffral_id" class=" form-input" value="{{$lottery->reffral_id}}"  placeholder="Address" readonly>
+ </div>
  </div>
 
 
  <div class="row">
     <div class="col-md-3 col-sm-2"></div>
     <div class="col-md-5 col-sm-6 col-xs-12 shipping-detail-btn">
-        <button type="button" class="btn  ">SUBMIT</button>
+        <button type="submit" class="btn  ">SUBMIT</button>
     </div>
     <div class="col-md-3 col-sm-3"></div>
  </div>
