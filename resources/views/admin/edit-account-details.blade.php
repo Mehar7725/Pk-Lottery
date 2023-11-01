@@ -14,11 +14,15 @@
   <link rel="stylesheet" href="assets/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="assets/admin/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
-         {{-- ====Sweet Aleart ==== --}}
+  	
+     {{-- ====Sweet Aleart ==== --}}
  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  <script src="assets/js/sweetalert.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -29,9 +33,10 @@
 
 <body>
 
-  @if(Session::has('info'))
+  
+  @if(Session::has('error'))
   <script>
-    swal("Info!", "{{ Session::get('info') }}", "info");
+    swal("Error!", "{{ Session::get('error') }}", "error");
     </script>
   @endif
   
@@ -40,19 +45,17 @@
     swal("Success!", "{{ Session::get('success') }}", "success");
     </script>
   @endif
-  
-
 
   <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
-    {{-- Navbar === --}}
-    <x-admin-nav/>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
-      {{-- Sidebar === --}}
-      <x-admin-sidebar/>
+     {{-- Navbar === --}}
+     <x-admin-nav/>
+     <!-- partial -->
+     <div class="container-fluid page-body-wrapper">
+       <!-- partial:partials/_sidebar.html -->
+       {{-- Sidebar === --}}
+       <x-admin-sidebar/>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -60,52 +63,34 @@
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Loutery Details</h4>
+                  <h4 class="font-weight-bold mb-0">Add Account</h4>
                 </div>
+
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <thead class="bg-primary">
-                  <tr>
-                    <th>Loutery Code</th>
-                    <th>Loutery Name</th>
-                    <th>Price</th>
-                    <th>Claim Time</th>
-                    <th>Total Lotteries</th>
-                    <th>Remaining Lotteries</th>
-                    <th>Partner Commission(%)</th>
-                    <th>Picture</th>
-                    <th>Acctions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @if (!empty($lotteries))
-                  @foreach ($lotteries as $item)
-                  <tr>
-                    <td>{{$item->code}}</td>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->price}}</td>
-                    <td>{{$item->claim_date_time}}</td>
-                    <td>{{$item->total_lotteries}}</td>
-                    <td>{{$item->remain_lotteries}}</td>
-                    <td>{{$item->partner_commission}}</td>
-                    {{-- <td>{{now()->format('Y-m-d H:i:s')}}</td> --}}
-                    <td><img src="assets/lottery/img/{{$item->image}}" style="width: 50px; height: 50px;" alt=""></td>
-                    <td><a  href="/edit-lottery/{{$item->id}}" class="btn btn-success">Edit</a>
-                      <a    href="/delete-lottery/{{$item->id}}"  class="btn btn-danger">Delete</a></td>
-                    
-                  </tr>
-                      
-                  @endforeach
-                      
-                  @endif
-                 
-                </tbody>
+
+          <form action="/update-account-detail" method="POST"   class="row g-3">
+            @csrf
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Account Name</label>
+              <input type="text" name="account_name" value="{{$account->account_name}}" class="form-control" placeholder="EasyPysa" id="inputEmail4" required>
+              <input type="hidden" name="account_id" value="{{$account->id}}" class="form-control" placeholder="EasyPysa" id="inputEmail4" required>
             </div>
-          </div>
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Holder Name</label>
+              <input type="text" name="holder_name" value="{{$account->holder_name}}" class="form-control" id="inputPassword4" placeholder="Mian G" required>
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Account Number</label>
+              <input type="text" name="account_number" value="{{$account->account_number}}" class="form-control" id="inputEmail4" placeholder="030011234567" required>
+            </div>
+
+         
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+          </form>
 
         </div>
         <!-- content-wrapper ends -->

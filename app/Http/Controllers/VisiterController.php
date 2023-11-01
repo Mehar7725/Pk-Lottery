@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountDetail;
 use App\Models\BuyLottery;
 use App\Models\ClaimLottery;
 use App\Models\CompanyDetail;
@@ -66,8 +67,8 @@ class VisiterController extends Controller
             return redirect()->to('admin-dashboard');
          }
          $lottery = BuyLottery::find($id);
-         
-        return view('visitor.shippingdetail', compact('lottery'));
+         $accounts = AccountDetail::latest()->get();
+        return view('visitor.shippingdetail', compact('lottery','accounts'));
     }
 
     public function ShippingConfirm(Request $request)  {

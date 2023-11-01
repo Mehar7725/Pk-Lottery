@@ -146,21 +146,22 @@
               </tr>
             </thead>
             <tbody class="text-center table-body-tr">
+              @if (!empty($accounts))
+                @php  $i = 1 ; @endphp
+              @foreach ($accounts as $item)
+
               <tr>
-                <th scope="row">1</th>
-                <td>Eassy Paisa (Shamas Nadeem)</td>
-                <td>+923324038971</td>
+                <th scope="row">{{$i}}</th>
+                <td>{{$item->account_name}} ({{$item->holder_name}})</td>
+                <td>{{$item->account_number}}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Eassy Paisa (Shamas Nadeem)</td>
-                <td>+923324038971</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td >Allied Bank (Usamaa Zafaar)</td>
-                <td>0000999888777666</td>
-              </tr>
+                  
+              @php  $i++; @endphp
+              @endforeach
+                  
+              @endif
+          
+              
             </tbody>
           </table>
         

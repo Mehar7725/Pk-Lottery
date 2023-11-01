@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountDetail;
 use App\Models\BuyLottery;
 use App\Models\CompanyDetail;
 use App\Models\Lottery;
@@ -154,8 +155,8 @@ class PartnerController extends Controller
         }
         
         $lottery = Lottery::find($id);
-        
-        return view('partner.buylotteryform', compact('lottery'));
+        $accounts = AccountDetail::latest()->get();
+        return view('partner.buylotteryform', compact('lottery','accounts'));
     }
 
 
@@ -275,8 +276,8 @@ public function TotalMembers()  {
     }
     
     $company_detail = CompanyDetail::first();
-    
-    return view('partner.total membars', compact('company_detail'));
+    $members = User::where(['reffral_id'=>Auth::user()->id,'role'=>0])->latest()->get();
+    return view('partner.total membars', compact('company_detail','members'));
     
 }
 

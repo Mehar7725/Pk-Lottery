@@ -13,6 +13,21 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basica" aria-expanded="false"
+          aria-controls="ui-basic">
+          <i class="ti-palette menu-icon"></i>
+          <span class="menu-title">Account Details</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basica">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/add-account-detail">Add Account</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/account-details">Account Details</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
           aria-controls="ui-basic">
           <i class="ti-palette menu-icon"></i>

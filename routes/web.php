@@ -80,6 +80,8 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/visiter-decline-lotteries', 'VisiterDeclineLotteries');
     Route::get('/add-winner', 'AddWinner');
     Route::get('/winner-details', 'WinnerDetails');
+    Route::get('/add-account-detail', 'AddAccountDetail');
+    Route::get('/account-details', 'AccountDetails');
     Route::get('/partner-re-details', 'PartnerReDetails');
     Route::get('/partner-re-commission', 'PartnerReCommission');
     Route::get('/commission-details-updates', 'CommissionDetailsUpdates');
@@ -111,4 +113,9 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/visiter-lottery-approve/{id}', 'VisiterLotteryApprove');
     Route::get('/visiter-lottery-decline/{id}', 'VisiterLotteryDecline');
     Route::get('/visiter-lottery-delete/{id}', 'VisiterLotteryDelete');
+    // Account Details =======
+    Route::post('/create-account-detail', 'CreateAccountDetail');
+    Route::get('/edit-account-detail/{id}', 'EditAccountDetail');
+    Route::post('/update-account-detail', 'UpdateAccountDetail');
+    Route::get('/delete-account-detail/{id}', 'DeleteAccountDetail');
 });

@@ -85,18 +85,45 @@
             <table id="example" class="table table-striped" style="width:100%">
               <thead>
                 <tr>
+                  <th># SR</th>
                   <th>Name</th>
                   <th>Father Name</th>
-                  <th>Phone No.</th>
+                  <th>CNIC</th>
+                  <th>DOB</th>
                   <th>Address</th>
                   <th>Payment Invoice</th>
-                  <th>Status</th>
+                  {{-- <th>Status</th>
                   <th>Price Value</th>
-                  <th>Referral Code</th>
+                  <th>Referral Code</th> --}}
                 </tr>
               </thead>
               <tbody>
+                @if (!empty($members))
+                @php  $i = 1;  @endphp
+                @foreach ($members as $item)
+                    
                 <tr>
+                  <td>{{$i}}</td>
+                  <td>{{$item->name}}</td>
+                  <td>{{$item->father_name}}</td>
+                  <td>{{$item->cnic}}</td>
+                  <td>{{$item->dob}}</td>
+                  <td>{{$item->address}}</td>
+                  <td>
+                    <img src="assets/partner/img/heart.png" alt="">
+                  </td>
+                  {{-- <td>Pending</td>
+                  <td>12333</td>
+                  <td>Alpha-12333</td> --}}
+                </tr>
+
+                @php  $i++;  @endphp
+                @endforeach
+                    
+                @endif
+
+
+                {{-- <tr>
                   <td>John E.goulet</td>
                   <td>Tabraiz</td>
                   <td>+92 345 6843923</td>
@@ -359,19 +386,21 @@
                   <td>Pending</td>
                   <td>12333</td>
                   <td>Alpha-12333</td>
-                </tr>
+                </tr> --}}
 
               </tbody>
               <tfoot>
                 <tr>
+                <th># SR</th>
                   <th>Name</th>
                   <th>Father Name</th>
-                  <th>Phone No.</th>
+                  <th>CNIC</th>
+                  <th>DOB</th>
                   <th>Address</th>
                   <th>Payment Invoice</th>
-                  <th>Status</th>
+                  {{-- <th>Status</th>
                   <th>Price Value</th>
-                  <th>Referral Code</th>
+                  <th>Referral Code</th> --}}
                 </tr>
               </tfoot>
             </table>

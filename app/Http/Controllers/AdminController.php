@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountDetail;
 use App\Models\BuyLottery;
 use App\Models\ClaimLottery;
 use App\Models\CompanyDetail;
@@ -271,6 +272,36 @@ class AdminController extends Controller
         
         $winner = Winner::all();
         return view('admin.winners details', compact('winner'));
+    }
+
+
+
+    public function AddAccountDetail() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
+        return view('admin.add-account-details' );
+    }
+
+
+
+    public function AccountDetails() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $account = AccountDetail::latest()->get();
+        return view('admin.account details', compact('account') );
     }
 
 
@@ -926,6 +957,61 @@ public function VisiterLotteryDelete($id)  {
     return redirect()->back()->with('info', "Visiter Lottery Deleted");
 }
 // Visiter Lottery Functions END ======================
+// Account Details  Functions Start ======================
+public function CreateAccountDetail(Request $request)   {
+    $get_account = AccountDetail::where(['account_name'=>$request->account_name,'account_number'=>$request->account_number])->first();
+    if (!empty($get_account)) {
+        return redirect()->back()->with('error', "This Account Number Allready Added!");
+    }
+
+    $account = AccountDetail::create([
+        'account_name'=>$request->account_name,
+        'holder_name'=>$request->holder_name,
+        'account_number'=>$request->account_number,
+    ]);
+
+    if ($account) {
+        return redirect()->back()->with('success', "Account Created Successfuly!");
+    } else {
+        return redirect()->back()->with('error', "Something Rong, Tryagain Latter!");
+    }
+    
+}
+
+public function EditAccountDetail($id)   {
+    $account = AccountDetail::find($id);
+
+    return view('admin.edit-account-details', compact('account'));
+}
+
+public function UpdateAccountDetail(Request $request)  {
+    
+    $account = AccountDetail::find($request->account_id);
+  if ($request->account_number != $account->account_number || $request->account_name != $account->account_name) {
+    $account_get = AccountDetail::where('id','!=',$request->account_id)->where('account_name','=',$request->account_name)->where('account_number','=',$request->account_number)->first();
+    if (!empty($account_get)) {
+        return redirect()->back()->with('error', "This Account Numbler Allready in Use!");
+    }
+  }
+
+  $account->account_name = $request->account_name;
+  $account->holder_name = $request->holder_name;
+  $account->account_number = $request->account_number;
+  $account->update();
+  if ($account) {
+    return redirect()->to('/account-details')->with('success', "Account Created Successfuly!");
+} else {
+    return redirect()->back()->with('error', "Something Rong, Tryagain Latter!");
+}
+  
+}
+
+public function DeleteAccountDetail($id)   {
+    $account = AccountDetail::find($id);
+    $account->delete();
+    return redirect()->back()->with('info', "Account Deleted Successfuly!");
+}
+// Account Details  Functions END ======================
 
 
 

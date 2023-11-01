@@ -60,7 +60,7 @@
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Loutery Details</h4>
+                  <h4 class="font-weight-bold mb-0">Account Details</h4>
                 </div>
               </div>
             </div>
@@ -70,32 +70,21 @@
               <table class="table table-striped">
                 <thead class="bg-primary">
                   <tr>
-                    <th>Loutery Code</th>
-                    <th>Loutery Name</th>
-                    <th>Price</th>
-                    <th>Claim Time</th>
-                    <th>Total Lotteries</th>
-                    <th>Remaining Lotteries</th>
-                    <th>Partner Commission(%)</th>
-                    <th>Picture</th>
+                    <th>Account Name</th>
+                    <th>Holder Name</th>
+                    <th>Account Number</th>
                     <th>Acctions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @if (!empty($lotteries))
-                  @foreach ($lotteries as $item)
+                  @if (!empty($account))
+                  @foreach ($account as $item)
                   <tr>
-                    <td>{{$item->code}}</td>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->price}}</td>
-                    <td>{{$item->claim_date_time}}</td>
-                    <td>{{$item->total_lotteries}}</td>
-                    <td>{{$item->remain_lotteries}}</td>
-                    <td>{{$item->partner_commission}}</td>
-                    {{-- <td>{{now()->format('Y-m-d H:i:s')}}</td> --}}
-                    <td><img src="assets/lottery/img/{{$item->image}}" style="width: 50px; height: 50px;" alt=""></td>
-                    <td><a  href="/edit-lottery/{{$item->id}}" class="btn btn-success">Edit</a>
-                      <a    href="/delete-lottery/{{$item->id}}"  class="btn btn-danger">Delete</a></td>
+                    <td>{{$item->account_name}}</td>
+                    <td>{{$item->holder_name}}</td>
+                    <td>{{$item->account_number}}</td>
+                   <td><a  href="/edit-account-detail/{{$item->id}}" class="btn btn-success">Edit</a>
+                      <a    href="/delete-account-detail/{{$item->id}}"  class="btn btn-danger">Delete</a></td>
                     
                   </tr>
                       
