@@ -16,7 +16,11 @@
   {{-- Bootstrap Datatable CSS CDN --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-  
+       {{-- ====Sweet Aleart ==== --}}
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ <script src="assets/js/sweetalert.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -26,6 +30,13 @@
 </head>
 
 <body>
+
+  @if(Session::has('warning'))
+  <script>
+    swal("Warning!", "{{ Session::get('warning') }}", "warning");
+    </script>
+  @endif
+
   <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
@@ -43,7 +54,7 @@
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Commission Details Updates</h4>
+                  <h4 class="font-weight-bold mb-0">All Add Image Details</h4>
                 </div>
               </div>
             </div>
@@ -53,37 +64,26 @@
               <table  id="example" class="table table-striped" style="width:100%">
                 <thead class="bg-primary">
                   <tr>
-                    <th>Name</th>
-                    <th>F.Name</th>
-                    <th>CNIC</th>
-                    <th>Loutrey Code</th>
-                    <th>D-O-B</th>
-                    <th>Transaction ID*</th>
-                    <th>Referral Code</th>
-                    <th>Address</th>
+                    <th>Image</th>
+                    <th>Acction</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @if (!empty($adds))
+                  @foreach ($adds as $item)
                   <tr>
-                    <td>Shamas</td>
-                    <td>Nadeem</td>
-                    <td>35505-1004306-8</td>
-                    <td>12345</td>
-                    <td>32-09-1795</td>
-                    <td>768592</td>
-                    <td>280569</td>
-                    <td>Ja ma ni dasna</td>
+                    <td class="text-center">
+                      <img src="assets/add/img/{{$item->image}}" alt="" srcset="" style="height: 60px;width: 50px ; border-radius: 0px;">
+                    </td>
+                    <td class="text-center">
+                      <a href="/add-delete/{{$item->id}}" class="btn btn-danger ">Delete</a>
+                    </td>
                   </tr>
-                  <tr>
-                    <td>Shamas</td>
-                    <td>Nadeem</td>
-                    <td>35505-1004306-8</td>
-                    <td>12345</td>
-                    <td>32-09-1795</td>
-                    <td>768592</td>
-                    <td>280569</td>
-                    <td>Ja ma ni dasna</td>
-                  </tr>
+                      
+                  @endforeach
+                      
+                  @endif
+                 
                 </tbody>
             </div>
           </div>

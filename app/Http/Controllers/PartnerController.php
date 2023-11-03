@@ -6,6 +6,7 @@ use App\Models\AccountDetail;
 use App\Models\BuyLottery;
 use App\Models\CompanyDetail;
 use App\Models\Lottery;
+use App\Models\PartnerCommission;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -240,6 +241,18 @@ class PartnerController extends Controller
    
 
         if ($buy_lottery) {
+            PartnerCommission::create([
+                'partner_id'=> Auth::user()->id,
+                'date'=> date('Y-m-d'),
+                'name'=> Auth::user()->name,
+                'father_name'=> Auth::user()->father_name,
+                'cnic'=> Auth::user()->cnic,
+                'dob'=> Auth::user()->dob,
+                'address'=> Auth::user()->address,
+                'lottery_code'=> $lottery->code,
+                'lottery_name'=> $lottery->name,
+                'commission'=> $lottery->partner_commission,
+            ]);
             return redirect()->to('/buy-lottery')->with('success',"Lottery Buy Successfuly!");
         } else {
             return redirect()->back()->with('error',"Something Rong Tryagain Later!");
@@ -277,6 +290,20 @@ class PartnerController extends Controller
    
 
         if ($buy_lottery) {
+
+            PartnerCommission::create([
+                'partner_id'=> Auth::user()->id,
+                'date'=> date('Y-m-d'),
+                'name'=> Auth::user()->name,
+                'father_name'=> Auth::user()->father_name,
+                'cnic'=> Auth::user()->cnic,
+                'dob'=> Auth::user()->dob,
+                'address'=> Auth::user()->address,
+                'lottery_code'=> $lottery->code,
+                'lottery_name'=> $lottery->name,
+                'commission'=> $lottery->partner_commission,
+            ]);
+
             return redirect()->to('/buy-lottery')->with('success',"Lottery Buy Successfuly!");
         } else {
             return redirect()->back()->with('error',"Something Rong Tryagain Later!");
@@ -311,6 +338,20 @@ class PartnerController extends Controller
    
 
         if ($buy_lottery) {
+
+            PartnerCommission::create([
+                'partner_id'=> Auth::user()->id,
+                'date'=> date('Y-m-d'),
+                'name'=> Auth::user()->name,
+                'father_name'=> Auth::user()->father_name,
+                'cnic'=> Auth::user()->cnic,
+                'dob'=> Auth::user()->dob,
+                'address'=> Auth::user()->address,
+                'lottery_code'=> $lottery->code,
+                'lottery_name'=> $lottery->name,
+                'commission'=> 0,
+            ]);
+
             return redirect()->to('/buy-lottery')->with('success',"Lottery Buy Successfuly!");
         } else {
             return redirect()->back()->with('error',"Something Rong Tryagain Later!");
@@ -366,7 +407,8 @@ public function Commission()  {
     
     $company_detail = CompanyDetail::first();
     $accounts = AccountDetail::latest()->get();
-    return view('partner.commision', compact('company_detail','accounts'));
+    $commission = PartnerCommission::where(['partner_id'=>Auth::user()->id])->get();
+    return view('partner.commision', compact('company_detail','accounts','commission'));
     
 }
 

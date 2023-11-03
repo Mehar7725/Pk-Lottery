@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountDetail;
+use App\Models\Add;
 use App\Models\BuyLottery;
 use App\Models\ClaimLottery;
 use App\Models\CompanyDetail;
 use Illuminate\Support\Facades\File;
 use App\Models\Contact;
 use App\Models\Lottery;
+use App\Models\PartnerCommission;
 use App\Models\User;
 use App\Models\Winner;
 use Illuminate\Http\Request;
@@ -276,6 +278,36 @@ class AdminController extends Controller
 
 
 
+
+    public function CreateAdd() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
+        return view('admin.create-add');
+    }
+
+
+    public function AddsDetails() {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $adds = Add::latest()->get();
+        return view('admin.add-details', compact('adds'));
+    }
+
+
+
     public function AddAccountDetail() {
         
         if (!Auth::user()) {
@@ -305,12 +337,32 @@ class AdminController extends Controller
     }
 
 
-    public function PartnerReDetails() {
-        return view('admin.partner re details');
+    public function PartnerReDetails($id) {
+
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $partner = User::find($id);
+        $partner_reffrals = User::where(['reffral_id'=>$partner->id])->get();
+        return view('admin.partner re details', compact('partner_reffrals'));
     }
 
-    public function PartnerReCommission() {
-        return view('admin.partner re commission');
+    public function PartnerReCommission($id) {
+        
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        $partner = User::find($id);
+        $commission = PartnerCommission::where(['partner_id'=>$id])->get();
+        return view('admin.partner re commission', compact('commission'));
     }
 
 
@@ -1012,6 +1064,79 @@ public function DeleteAccountDetail($id)   {
     return redirect()->back()->with('info', "Account Deleted Successfuly!");
 }
 // Account Details  Functions END ======================
+// Partner Commission  Functions Start ======================
+public function CommissionPending($id)   {
+    $commission = PartnerCommission::find($id);
+    $commission->status = 0 ;
+
+    $commission->update();
+
+    return redirect()->back()->with('info',"Commission in Pending ");
+    
+}
+
+public function CommissionApprove($id)   {
+    $commission = PartnerCommission::find($id);
+    $commission->status = 1 ;
+
+    $commission->update();
+
+    return redirect()->back()->with('success',"Commission  Approved");
+    
+}
+
+public function CommissionDecline($id)   {
+    $commission = PartnerCommission::find($id);
+    $commission->status = 2 ;
+
+    $commission->update();
+
+    return redirect()->back()->with('warning',"Commission Declined ");
+    
+}
+// Partner Commission  Functions END ======================
+// Home Add Functions Start ======================
+public function UploadAdd(Request $request)   {
+    
+    if($request->hasfile('image')){
+        $image = $request->image;
+        $imageName =  $image->getClientOriginalName();
+        $image->move(public_path().'/assets/add/img', $imageName);
+        $imageData = $imageName;
+
+        $add = Add::create([
+            'image'=>$imageData,
+        ]);
+
+        if ($add ) {
+            return redirect()->back()->with('success',"Add Created Successfuly!");
+        } else {
+            return redirect()->back()->with('error',"Something Rong, Tryagain Latter!");
+        }
+        
+    }
+}
+
+
+public function AddDelete($id)   {
+    $add = Add::find($id);
+   
+    if ($add->image != null) {
+        $path = public_path().'/assets/add/img'.$add->image;
+    
+        if(File::exists($path))
+        {
+            File::delete($path);
+        }
+
+    }
+
+    $add->delete();
+
+    return redirect()->back()->with('warning',"Add Image Deleted ");
+    
+}
+// Home Add Functions END ======================
 
 
 

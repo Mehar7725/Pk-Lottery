@@ -80,10 +80,12 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/visiter-decline-lotteries', 'VisiterDeclineLotteries');
     Route::get('/add-winner', 'AddWinner');
     Route::get('/winner-details', 'WinnerDetails');
+    Route::get('/create-add', 'CreateAdd');
+    Route::get('/add-details', 'AddsDetails');
     Route::get('/add-account-detail', 'AddAccountDetail');
     Route::get('/account-details', 'AccountDetails');
-    Route::get('/partner-re-details', 'PartnerReDetails');
-    Route::get('/partner-re-commission', 'PartnerReCommission');
+    Route::get('/partner-re-details/{id}', 'PartnerReDetails');
+    Route::get('/partner-re-commission/{id}', 'PartnerReCommission');
     Route::get('/commission-details-updates', 'CommissionDetailsUpdates');
     Route::get('/contact-msg', 'ContactMsges');
     Route::get('/contact-msg-delete/{id}', 'ContactMsgDelete');
@@ -118,4 +120,11 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/edit-account-detail/{id}', 'EditAccountDetail');
     Route::post('/update-account-detail', 'UpdateAccountDetail');
     Route::get('/delete-account-detail/{id}', 'DeleteAccountDetail');
+    // Partner Commission ========
+    Route::get('/commission-pending/{id}', 'CommissionPending');
+    Route::get('/commission-approve/{id}', 'CommissionApprove');
+    Route::get('/commission-decline/{id}', 'CommissionDecline');
+    // Home Add =======
+    Route::post('/upload-add', 'UploadAdd');
+    Route::get('/add-delete/{id}', 'AddDelete');
 });

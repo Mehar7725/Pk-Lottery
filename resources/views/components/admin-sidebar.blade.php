@@ -109,6 +109,21 @@
           </ul>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basicadd" aria-expanded="false"
+          aria-controls="ui-basic3">
+          <i class="ti-palette menu-icon"></i>
+          <span class="menu-title">Home Adds</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basicadd">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/create-add">Create Add</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/add-details">Add Details</a>
+            </li>
+          </ul>
+        </div>
+      </li>
  
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic4" aria-expanded="false"
@@ -119,16 +134,28 @@
         </a>
         <div class="collapse" id="ui-basic4">
           <ul class="nav flex-column sub-menu">
+
+            @php
+                $partners = App\Models\User::where(['role'=>1])->get();
+            @endphp
+
+
+          @if (!empty($partners))
+         @foreach ($partners as $item)
+              
+         
             <li class="nav-item"> <a class="nav-link btn dropdown-toggle" id="dropdownMenuLink"
-                data-bs-toggle="dropdown" aria-expanded="false" href="">Ali</a>
+                data-bs-toggle="dropdown" aria-expanded="false" href="">{{$item->name}}</a>
               <!-- sub child -->
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="/partner-re-details">Details</a></li>
-                <li><a class="dropdown-item" href="/partner-re-commission">Commission</a></li>
-                <li><a class="dropdown-item" href="/commission-details-updates">Commission Details Updates</a></li>
+                <li><a class="dropdown-item" href="/partner-re-details/{{$item->id}}">Details</a></li>
+                <li><a class="dropdown-item" href="/partner-re-commission/{{$item->id}}">Commission</a></li>
+                {{-- <li><a class="dropdown-item" href="/commission-details-updates">Commission Details Updates</a></li> --}}
               </ul>
               <!-- end -->
             </li>
+            @endforeach
+            @endif
             {{-- <li class="nav-item"> <a class="nav-link btn dropdown-toggle" id="dropdownMenuLink"
                 data-bs-toggle="dropdown" aria-expanded="false" href="pages/loutery/add loutrey.html">Faraz</a>
               <!-- sub child -->

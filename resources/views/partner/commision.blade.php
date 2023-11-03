@@ -150,295 +150,49 @@
             <table id="example" class="table table-striped" style="width:100%">
               <thead>
                 <tr>
-                  <th>Lottery No</th>
-                  <th>Price</th>
-                  <th>Description</th>
-                  <th>Commission</th>
-                  <th>Percentage</th>
+                  <th>Date</th>
+                  <th>Name</th>
+                  <th>Father Name</th>
+                  <th>CNIC</th>
+                  <th>DOB</th>
+                  <th>Address</th>
+                  <th>Lottery Code</th>
+                  <th>Lottery Name</th>
+                  <th>Commission(%)</th>
                   <th>Status</th>
-                  <th>Referral Code</th>
                 </tr>
               </thead>
               <tbody>
+                @if (!empty($commission))
+                @foreach ($commission as $item)
+
                 <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
+                  <td>{{$item->date}}</td>
+                  <td>{{$item->name}}</td>
+                  <td>{{$item->father_name}}</td>
+                  <td>{{$item->cnic}}</td>
+                  <td>{{$item->dob}}</td>
+                  <td>{{$item->address}}</td>
+                  <td>{{$item->lottery_code}}</td>
+                  <td>{{$item->lottery_name}}</td>
+                  <td>{{$item->commission}}</td>
+                  @if ($item->status == 0)
+                  <td class="text-info">Pending</td>
+                  @elseif($item->status == 1)
+                  <td class="text-success">Approved</td>
+                  @elseif($item->status == 2)
+                  <td class="text-danger">Declined</td>
+                  @endif
+         
+
+                  
+                  
                 </tr>
-                <tr>
-                  <td>421</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>422</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>423</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>424</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>425</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>426</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>427</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>428</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>429</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
-                <tr>
-                  <td>420</td>
-                  <td>1200$</td>
-                  <td>Edinburgh...</td>
-                  <td>200$</td>
-                  <td>12%</td>
-                  <td>ABCDEF...</td>
-                  <td>Alpha-12333</td>
-                </tr>
+                    
+                @endforeach
+                    
+                @endif
+             
               </tbody>
               <tfoot>
                 <tr>

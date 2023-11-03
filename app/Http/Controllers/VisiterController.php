@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountDetail;
+use App\Models\Add;
 use App\Models\BuyLottery;
 use App\Models\ClaimLottery;
 use App\Models\CompanyDetail;
+use App\Models\Lottery;
 use App\Models\User;
 use App\Models\Winner;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +26,9 @@ class VisiterController extends Controller
             }
         }
         $company_detail = CompanyDetail::first();
-        return view('visitor.home', compact('company_detail'));
+        $add = Add::latest()->get();
+
+        return view('visitor.home', compact('company_detail','add'));
     }
 
     public function Winners()  {

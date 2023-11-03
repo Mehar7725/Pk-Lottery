@@ -100,6 +100,7 @@
               <table  id="example" class="table table-striped" style="width:100%">
                 <thead class="bg-primary">
                   <tr>
+                    <th>Claim Time</th>
                     <th>Name</th>
                     <th>F.Name</th>
                     <th>CNIC</th>
@@ -121,6 +122,7 @@
                   @foreach ($lotteries as $item)
 
                   <tr>
+                    <td>{{$item->created_at}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->father_name}}</td>
                     <td>{{$item->cnic}}</td>

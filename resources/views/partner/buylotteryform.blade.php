@@ -91,11 +91,29 @@
         <p class=" form-name">Address</p>
   <input type="text" name="address" class=" form-input"  placeholder="Address" required>
 </div>
-  
+        <div class="col-md-6">
+          <p class=" form-name">Payment Type</p>
+          <select name="payment_type" class=" text-dark  form-input" id="payment_type"  >
+            <option value="0" selected>Online Payment</option>
+            <option value="1">Cash Payment</option>
+            <option value="2">No Payment</option>
+          </select>
+          
+  </div>
     
   
      </div> 
-
+     <div class="row" id="trans_detail">
+       
+        <div class="col-md-6">
+          <p class=" form-name">Transaction Image</p>
+    <input type="file" name="image" class=" form-input"  placeholder="Transaction ID" accept=".jpg,jpeg,.png" required>
+  </div>
+  <div class="col-md-6">
+    <p class=" form-name">Transaction ID</p>
+<input type="text" name="trans_id" class=" form-input"  placeholder="1478952364" required>
+</div>
+     </div>
 
      <div class="row">
      

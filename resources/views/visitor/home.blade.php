@@ -11,7 +11,11 @@
 <!--boostrap css -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+<!-- caraousal -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--caraousal  -->
      {{-- JQuery CDN ====== --}}
      <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
      <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -142,10 +146,73 @@
 </div>
 <!-- cover end  -->
 
+<div class="container-fluid  mt-5 mb-4">
+    <div class="container contaner-owl">
+      <div class="row">
+    
+        <div class="col-md-12">
+            <div class="owl-carousel owl-3 owl-theme ">
+            
+                @if (!empty($add))
+                @foreach ($add as $item)
+    
+                <div class="item bg-danger" style="height: 300px">
+                    <img src="assets/add/img/{{$item->image}}" alt="" style="width: 100%;height: 100%;"></div>
+                    
+                @endforeach
+                    
+                @endif
+             
+    
+               </div>
+             
+          
+            </div>
+        </div>
+      </div>
+    
+    
+    </div>
+
 
 <!-- footer start-->
 <x-visiter-footer/>
 <!-- footer END-->
+
+ <!-- owl carosul -->
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+ integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" 
+ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <!-- owl carosul -->
+   <script>
+
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        dots: false,
+        autoplay:true,
+        autoplayTimeout:1000,
+        autoplayHoverPause:true,
+        nav:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:false
+                
+            },
+            600:{
+                items:2,
+                nav:false
+            },
+            1000:{
+                items:3,
+            }
+        }
+    })
+    </script>
+    
 
 <script>
     $('#log-visiter').click(function () { 
