@@ -39,7 +39,7 @@ class VisiterController extends Controller
             }
         }
         $winners = Winner::all();
-        return view('visitor.lotterywinners', compact('winners'));
+        return view('visitor.Lotterywinners', compact('winners'));
     }
 
 
