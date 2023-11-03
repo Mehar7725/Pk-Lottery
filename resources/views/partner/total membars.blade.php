@@ -26,7 +26,7 @@
 
   <!-- custom css -->
 
-  <title>TOTAL MEMBERS</title>
+  <title>Partner | TOTAL MEMBERS</title>
 </head>
 
 <body>

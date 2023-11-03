@@ -26,7 +26,7 @@
 
   <!-- custom css -->
 
-  <title>Commission Page</title>
+  <title>Partner | Commission</title>
 </head>
 
 <body>
