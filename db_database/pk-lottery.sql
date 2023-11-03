@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 11:55 AM
+-- Generation Time: Nov 03, 2023 at 07:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -47,6 +47,27 @@ INSERT INTO `account_details` (`id`, `account_name`, `holder_name`, `account_num
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `adds`
+--
+
+CREATE TABLE `adds` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `adds`
+--
+
+INSERT INTO `adds` (`id`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'car_concept_threedimensional_133624_1366x768.jpg', '2023-11-03 13:33:38', '2023-11-03 13:33:38'),
+(2, '3.jpg', '2023-11-03 13:33:47', '2023-11-03 13:33:47');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `buy_lotteries`
 --
 
@@ -63,8 +84,6 @@ CREATE TABLE `buy_lotteries` (
   `reffral_name` varchar(255) DEFAULT NULL,
   `reffral_cnic` varchar(255) DEFAULT NULL,
   `dob` varchar(255) DEFAULT NULL,
-  `cnic_front` varchar(255) DEFAULT NULL,
-  `cnic_back` varchar(255) DEFAULT NULL,
   `transaction_image` varchar(255) DEFAULT NULL,
   `transaction_id` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -72,6 +91,7 @@ CREATE TABLE `buy_lotteries` (
   `claim_date_time` date DEFAULT NULL,
   `partner_commission` varchar(255) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
+  `payment_type` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -80,10 +100,14 @@ CREATE TABLE `buy_lotteries` (
 -- Dumping data for table `buy_lotteries`
 --
 
-INSERT INTO `buy_lotteries` (`id`, `name`, `father_name`, `cnic`, `lottery_code`, `lottery_id`, `lottery_name`, `lottery_image`, `reffral_id`, `reffral_name`, `reffral_cnic`, `dob`, `cnic_front`, `cnic_back`, `transaction_image`, `transaction_id`, `address`, `price`, `claim_date_time`, `partner_commission`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Mubashir Ali', 'Mustafa', '1234567892', '11', '2', 'Mining Minner', 'miner1.jpg', '2', 'Raza', '354031547852', '1994-11-12', '61vTPJCGCjL._AC_UY741_.jpg', '81RpcF7fSnL._AC_UX569_.jpg', 'buttons.png', '1199345621', 'Karachi', '400', '2023-11-01', '35', 1, '2023-11-01 03:49:48', '2023-11-01 03:49:48'),
-(2, 'Mubashir Ali', 'Mustafa', '1234567892', '002', '3', 'Laptop 11th generation', 'download (4).jpg', '2', 'Raza', '354031547852', '1994-12-11', '81RpcF7fSnL._AC_UX569_.jpg', '61vTPJCGCjL._AC_UY741_.jpg', 'buttons.png', '12345677442', 'Sargodah', '36000', '2023-11-01', '23', 2, '2023-11-01 03:53:29', '2023-11-01 04:22:55'),
-(3, 'Raza', 'Shehbaz', '3450678345672', '004', '5', 'Imported Makeup Kit', 'Fuji_Dash_Beauty_1x._SY304_CB432774351_.jpg', '2', 'Raza', '354031547852', '1989-07-07', '61vTPJCGCjL._AC_UY741_.jpg', '81RpcF7fSnL._AC_UX569_.jpg', 'buttons.png', '112211233432431', 'Lahore, Punjab', '19900', '2023-10-31', '24', 5, '2023-11-01 03:59:42', '2023-11-01 04:25:46');
+INSERT INTO `buy_lotteries` (`id`, `name`, `father_name`, `cnic`, `lottery_code`, `lottery_id`, `lottery_name`, `lottery_image`, `reffral_id`, `reffral_name`, `reffral_cnic`, `dob`, `transaction_image`, `transaction_id`, `address`, `price`, `claim_date_time`, `partner_commission`, `status`, `payment_type`, `created_at`, `updated_at`) VALUES
+(1, 'Mubashir Ali', 'Mustafa', '1234567892', '11', '2', 'Mining Minner', 'miner1.jpg', '2', 'Raza', '354031547852', '1994-11-12', 'buttons.png', '1199345621', 'Karachi', '400', '2023-11-01', '35', 1, 0, '2023-11-01 03:49:48', '2023-11-01 03:49:48'),
+(2, 'Mubashir Ali', 'Mustafa', '1234567892', '002', '3', 'Laptop 11th generation', 'download (4).jpg', '2', 'Raza', '354031547852', '1994-12-11', 'buttons.png', '12345677442', 'Sargodah', '36000', '2023-11-01', '23', 2, 0, '2023-11-01 03:53:29', '2023-11-01 04:22:55'),
+(3, 'Raza', 'Shehbaz', '3450678345672', '004', '5', 'Imported Makeup Kit', 'Fuji_Dash_Beauty_1x._SY304_CB432774351_.jpg', '2', 'Raza', '354031547852', '1989-07-07', 'buttons.png', '112211233432431', 'Lahore, Punjab', '19900', '2023-10-31', '24', 5, 0, '2023-11-01 03:59:42', '2023-11-01 04:25:46'),
+(4, 'Abrar', 'Sabir', '12341234123', '004', '5', 'Imported Car Model', 'car_concept_threedimensional_133624_1366x768.jpg', '2', 'Raza', '354031547852', '1999-09-05', NULL, NULL, 'Multan', '19900', NULL, '24', 1, 1, '2023-11-03 09:09:46', '2023-11-03 09:09:46'),
+(5, 'Zain', 'Goraya', '56454123276', '003', '4', 'Iphone Air port 2.0', '61f1YfTkTDL._AC_SX522_.jpg', '2', 'Raza', '354031547852', '1998-01-17', 'car_concept_threedimensional_133624_1366x768.jpg', '34556623363', 'Lahore Punjab', '1450', NULL, '17', 5, 0, '2023-11-03 09:11:27', '2023-11-03 10:15:32'),
+(6, 'Mian', 'G', '8634556883', '003', '4', 'Iphone Air port 2.0', '61f1YfTkTDL._AC_SX522_.jpg', '2', 'Raza', '354031547852', '1997-01-04', NULL, NULL, 'Karachi', '1450', NULL, '0', 2, 2, '2023-11-03 09:12:23', '2023-11-03 10:15:28'),
+(7, 'Faiz', 'Ahmed', '34543242332', '11', '2', 'Mining Minner', 'miner1.jpg', '2', 'Raza', '354031547852', '2005-05-12', NULL, NULL, 'Karachi', '400', NULL, '0', 1, 2, '2023-11-03 12:26:48', '2023-11-03 12:26:48');
 
 -- --------------------------------------------------------
 
@@ -105,13 +129,12 @@ CREATE TABLE `claim_lotteries` (
   `reffral_name` varchar(255) DEFAULT NULL,
   `reffral_cnic` varchar(255) DEFAULT NULL,
   `dob` varchar(255) DEFAULT NULL,
-  `cnic_front` varchar(255) DEFAULT NULL,
-  `cnic_back` varchar(255) DEFAULT NULL,
   `transaction_image` varchar(255) DEFAULT NULL,
   `transaction_id` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `price` varchar(255) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
+  `payment_type` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -120,9 +143,11 @@ CREATE TABLE `claim_lotteries` (
 -- Dumping data for table `claim_lotteries`
 --
 
-INSERT INTO `claim_lotteries` (`id`, `buy_id`, `name`, `father_name`, `cnic`, `lottery_code`, `lottery_id`, `lottery_name`, `lottery_image`, `reffral_id`, `reffral_name`, `reffral_cnic`, `dob`, `cnic_front`, `cnic_back`, `transaction_image`, `transaction_id`, `address`, `price`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2', 'Mubashir Ali', 'Mustafa', '1234567892', '002', '3', 'Laptop 11th generation', 'download (4).jpg', '2', 'Raza', '354031547852', '1994-12-11', '81RpcF7fSnL._AC_UX569_.jpg', '61vTPJCGCjL._AC_UY741_.jpg', 'buttons.png', '34342343', 'Sargodah', '36000', 1, '2023-11-01 04:19:48', '2023-11-01 04:22:55'),
-(2, '3', 'Raza', 'Shehbaz', '3450678345672', '004', '5', 'Imported Makeup Kit', 'Fuji_Dash_Beauty_1x._SY304_CB432774351_.jpg', '2', 'Raza', '354031547852', '1989-07-07', '81RpcF7fSnL._AC_UX569_.jpg', '61vTPJCGCjL._AC_UY741_.jpg', 'buttons.png', '1122434211121', 'Lahore, Punjab', '19900', 2, '2023-11-01 04:25:26', '2023-11-01 04:25:46');
+INSERT INTO `claim_lotteries` (`id`, `buy_id`, `name`, `father_name`, `cnic`, `lottery_code`, `lottery_id`, `lottery_name`, `lottery_image`, `reffral_id`, `reffral_name`, `reffral_cnic`, `dob`, `transaction_image`, `transaction_id`, `address`, `price`, `status`, `payment_type`, `created_at`, `updated_at`) VALUES
+(1, '2', 'Mubashir Ali', 'Mustafa', '1234567892', '002', '3', 'Laptop 11th generation', 'download (4).jpg', '2', 'Raza', '354031547852', '1994-12-11', 'buttons.png', '34342343', 'Sargodah', '36000', 1, 0, '2023-11-01 04:19:48', '2023-11-01 04:22:55'),
+(2, '3', 'Raza', 'Shehbaz', '3450678345672', '004', '5', 'Imported Makeup Kit', 'Fuji_Dash_Beauty_1x._SY304_CB432774351_.jpg', '2', 'Raza', '354031547852', '1989-07-07', 'buttons.png', '1122434211121', 'Lahore, Punjab', '19900', 2, 0, '2023-11-01 04:25:26', '2023-11-01 04:25:46'),
+(3, '6', 'Mian', 'G', '8634556883', '003', '4', 'Iphone Air port 2.0', '61f1YfTkTDL._AC_SX522_.jpg', '2', 'Raza', '354031547852', '1997-01-04', NULL, NULL, 'Karachi', '1450', 1, 1, '2023-11-03 10:14:22', '2023-11-03 10:15:28'),
+(4, '5', 'Zain', 'Goraya', '56454123276', '003', '4', 'Iphone Air port 2.0', '61f1YfTkTDL._AC_SX522_.jpg', '2', 'Raza', '354031547852', '1998-01-17', 'car_concept_threedimensional_133624_1366x768.jpg', '454355423323', 'Lahore Punjab', '1450', 2, 0, '2023-11-03 10:15:17', '2023-11-03 10:15:32');
 
 -- --------------------------------------------------------
 
@@ -213,10 +238,10 @@ CREATE TABLE `lotteries` (
 
 INSERT INTO `lotteries` (`id`, `code`, `name`, `price`, `image`, `claim_date_time`, `total_lotteries`, `remain_lotteries`, `partner_commission`, `created_at`, `updated_at`) VALUES
 (1, '15', 'Oppo F21 Pro', '380', 'oppo.jpg', '2023-10-30', '800', '799', '20', '2023-10-25 14:57:55', '2023-10-28 06:16:13'),
-(2, '11', 'Mining Minner', '400', 'miner1.jpg', '2023-10-29', '147', '144', '35', '2023-10-25 15:00:56', '2023-11-01 03:49:48'),
+(2, '11', 'Mining Minner', '400', 'miner1.jpg', '2023-10-29', '147', '143', '35', '2023-10-25 15:00:56', '2023-11-03 12:26:48'),
 (3, '002', 'Laptop 11th generation', '36000', 'download (4).jpg', '2023-11-01', '37', '36', '23', '2023-11-01 03:46:18', '2023-11-01 04:17:50'),
-(4, '003', 'Iphone Air port 2.0', '1450', '61f1YfTkTDL._AC_SX522_.jpg', '2023-11-10', '84', '84', '17', '2023-11-01 03:47:17', '2023-11-01 03:47:17'),
-(5, '004', 'Imported Makeup Kit', '19900', 'Fuji_Dash_Beauty_1x._SY304_CB432774351_.jpg', '2023-10-31', '14', '13', '24', '2023-11-01 03:48:03', '2023-11-01 04:24:25'),
+(4, '003', 'Iphone Air port 2.0', '1450', '61f1YfTkTDL._AC_SX522_.jpg', '2023-11-10', '84', '82', '17', '2023-11-01 03:47:17', '2023-11-03 09:12:23'),
+(5, '004', 'Imported Car Model', '19900', 'car_concept_threedimensional_133624_1366x768.jpg', '2023-10-31', '14', '12', '24', '2023-11-01 03:48:03', '2023-11-03 09:09:46'),
 (6, '005', 'Laptop Dell 11th generation, core i9, 32Gb RAM, 1Tb SSD Hard', '55000', 'download (5).jpg', '2023-12-10', '5', '5', '38', '2023-11-01 03:57:49', '2023-11-01 03:57:49');
 
 -- --------------------------------------------------------
@@ -246,7 +271,39 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2023_10_28_180145_create_buy_lotteries_table', 4),
 (9, '2023_10_31_194658_create_company_details_table', 5),
 (10, '2023_11_01_073351_create_claim_lotteries_table', 6),
-(11, '2023_11_01_093912_create_account_details_table', 7);
+(11, '2023_11_01_093912_create_account_details_table', 7),
+(12, '2023_11_03_170908_create_partner_commissions_table', 8),
+(13, '2023_11_03_171231_create_adds_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `partner_commissions`
+--
+
+CREATE TABLE `partner_commissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `partner_id` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `father_name` varchar(255) DEFAULT NULL,
+  `cnic` varchar(255) DEFAULT NULL,
+  `dob` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `lottery_code` varchar(255) DEFAULT NULL,
+  `lottery_name` varchar(255) DEFAULT NULL,
+  `commission` varchar(255) DEFAULT NULL,
+  `status` tinyint(255) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `partner_commissions`
+--
+
+INSERT INTO `partner_commissions` (`id`, `partner_id`, `date`, `name`, `father_name`, `cnic`, `dob`, `address`, `lottery_code`, `lottery_name`, `commission`, `status`, `created_at`, `updated_at`) VALUES
+(1, '2', '2023-11-03', 'Raza', 'Shehbaz', '354031547852', '2004-05-13', 'Multan', '11', 'Mining Minner', '0', 1, '2023-11-03 12:26:48', '2023-11-03 13:03:42');
 
 -- --------------------------------------------------------
 
@@ -310,7 +367,11 @@ INSERT INTO `users` (`id`, `name`, `father_name`, `cnic`, `dob`, `profile`, `add
 (1, 'Mubashir Ali', 'Mustafa', '354031234567', '2023-10-12', 'download.jpg', 'Lahore Punjab', NULL, NULL, '$2y$10$q46zpsCtboyJ33auaYcA0e7Tg1ujIWND7nghkU0gXyoAxS7DoYcgG', 2, NULL, '2023-10-25 02:56:12', '2023-10-28 06:06:23'),
 (2, 'Raza', 'Shehbaz', '354031547852', '2004-05-13', 'wallpaperflare.com_wallpaper (3).jpg', 'Multan', NULL, NULL, '$2y$10$c6SCwT6gxGBDsiL1uFSB1epyoPiHgP7YtqNfGwbgAC9fGvfhT2hj2', 1, NULL, '2023-10-25 02:57:31', '2023-10-28 10:39:19'),
 (3, 'Mubashir Ali', 'Mustafa', '1234567892', '1994-11-12', NULL, 'Karachi', '2', NULL, NULL, 0, NULL, '2023-11-01 03:49:47', '2023-11-01 03:49:47'),
-(4, 'Raza', 'Shehbaz', '3450678345672', '1989-07-07', NULL, 'Lahore, Punjab', '2', NULL, NULL, 0, NULL, '2023-11-01 03:59:42', '2023-11-01 03:59:42');
+(4, 'Raza', 'Shehbaz', '3450678345672', '1989-07-07', NULL, 'Lahore, Punjab', '2', NULL, NULL, 0, NULL, '2023-11-01 03:59:42', '2023-11-01 03:59:42'),
+(5, 'Abrar', 'Sabir', '12341234123', '1999-09-05', NULL, 'Multan', '2', NULL, NULL, 0, NULL, '2023-11-03 09:09:46', '2023-11-03 09:09:46'),
+(6, 'Zain', 'Goraya', '56454123276', '1998-01-17', NULL, 'Lahore Punjab', '2', NULL, NULL, 0, NULL, '2023-11-03 09:11:27', '2023-11-03 09:11:27'),
+(7, 'Mian', 'G', '8634556883', '1997-01-04', NULL, 'Karachi', '2', NULL, NULL, 0, NULL, '2023-11-03 09:12:23', '2023-11-03 09:12:23'),
+(8, 'Faiz', 'Ahmed', '34543242332', '2005-05-12', NULL, 'Karachi', '2', NULL, NULL, 0, NULL, '2023-11-03 12:26:48', '2023-11-03 12:26:48');
 
 -- --------------------------------------------------------
 
@@ -346,6 +407,12 @@ INSERT INTO `winners` (`id`, `code`, `number`, `price`, `winner_name`, `image`, 
 -- Indexes for table `account_details`
 --
 ALTER TABLE `account_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `adds`
+--
+ALTER TABLE `adds`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -395,6 +462,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `partner_commissions`
+--
+ALTER TABLE `partner_commissions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
@@ -433,16 +506,22 @@ ALTER TABLE `account_details`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `adds`
+--
+ALTER TABLE `adds`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `buy_lotteries`
 --
 ALTER TABLE `buy_lotteries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `claim_lotteries`
 --
 ALTER TABLE `claim_lotteries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `company_details`
@@ -472,7 +551,13 @@ ALTER TABLE `lotteries`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `partner_commissions`
+--
+ALTER TABLE `partner_commissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -484,7 +569,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `winners`
