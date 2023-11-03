@@ -25,13 +25,12 @@ return new class extends Migration
             $table->string('reffral_name')->nullable();
             $table->string('reffral_cnic')->nullable();
             $table->string('dob')->nullable();
-            $table->string('cnic_front')->nullable();
-            $table->string('cnic_back')->nullable();
             $table->string('transaction_image')->nullable();
             $table->string('transaction_id')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('price')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('payment_type')->default(0);
             $table->timestamps();
         });
     }

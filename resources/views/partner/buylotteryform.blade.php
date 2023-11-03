@@ -80,53 +80,38 @@
    <input type="number" name="cnic" class=" form-input"  placeholder="CNIC" required>
         </div>
         <div class="col-md-6">
-         <p class=" form-name">Lottery Code</p>
-   <input type="number" name="lottery_code" value="{{$lottery->code}}" class=" form-input"  placeholder="Lottery Code" readonly required>
-   <input type="hidden" name="lottery_id" value="{{$lottery->id}}" class=" form-input"  placeholder="Lottery Code" required>
- </div>
+          <p class=" form-name">DOB</p>
+         <input type="date" name="dob" class="form-input"  placeholder="DD/MM/YYYY" required>
+         </div>
+     
      </div>
 
-     <div class="row">
-        <div class="col-md-6">
-         <p class=" form-name">DOB</p>
-        <input type="date" name="dob" class="form-input"  placeholder="DD/MM/YYYY" required>
-        </div>
-        <div class="col-md-6">
-         <p class=" form-name">CNIC Image Front</p>
-   <input type="file" name="image_front" class=" form-input"  placeholder="CNIC Image Front" accept=".jpg,jpeg,.png" required> 
- </div>
-     </div>
+     <div class="row"  >
+      <div class="col-md-6">
+        <p class=" form-name">Address</p>
+  <input type="text" name="address" class=" form-input"  placeholder="Address" required>
+</div>
+  
+    
+  
+     </div> 
+
 
      <div class="row">
-        <div class="col-md-6">
-         <p class=" form-name">CNIC Image Back</p>
-   <input type="file" name="image_back" class=" form-input"  placeholder="CNIC Image Back" accept=".jpg,jpeg,.png" required>
-        </div>
-        <div class="col-md-6">
-         <p class=" form-name">Transaction Image</p>
-   <input type="file" name="trans_image" class=" form-input"  placeholder="Transaction ID" accept=".jpg,jpeg,.png" required>
- </div>
+     
+   
      </div>
-     <div class="row">
-        <div class="col-md-6">
-         <p class=" form-name">Transaction ID</p>
-   <input type="text" name="trans_id" class=" form-input"  placeholder="1478952364" required>
- </div>
-        <div class="col-md-6">
-         <p class=" form-name">Address</p>
-   <input type="text" name="address" class=" form-input"  placeholder="Address" required>
- </div>
- 
-     </div>
+
      <div class="row">
       <div class="col-md-6">
         <p class=" form-name">Shipping cost</p>
       <input type="number" name="cost" class=" form-input" value="{{$lottery->price}}"  placeholder="Rs.2000" value="Rs.2000" readonly required>
        </div>
-      <div class="col-md-6">
-        <p class=" form-name">Commission(%)</p>
-      <input type="text" name="commission" class=" form-input" value="{{$lottery->partner_commission}}"  placeholder="Rs.2000"  readonly >
-       </div>
+       <div class="col-md-6">
+        <p class=" form-name">Lottery Code</p>
+  <input type="number" name="lottery_code" value="{{$lottery->code}}" class=" form-input"  placeholder="Lottery Code" readonly required>
+  <input type="hidden" name="lottery_id" value="{{$lottery->id}}" class=" form-input"  placeholder="Lottery Code" required>
+</div>
      </div>
 
 
@@ -140,38 +125,7 @@
  
     </form>
 
-     <div class="row">
-      <div class="col-md-12">
-          <table class="table table-bordered">
-            <thead class="text-center table-head-th">
-              <tr>
-                <th scope="col"># SR</th>
-                <th scope="col">Account Name</th>
-                <th scope="col">Account Number</th>
-              </tr>
-            </thead>
-            <tbody class="text-center table-body-tr">
-              @if (!empty($accounts))
-                @php  $i = 1 ; @endphp
-              @foreach ($accounts as $item)
-
-              <tr>
-                <th scope="row">{{$i}}</th>
-                <td>{{$item->account_name}} ({{$item->holder_name}})</td>
-                <td>{{$item->account_number}}</td>
-              </tr>
-                  
-              @php  $i++; @endphp
-              @endforeach
-                  
-              @endif
-            
-          
-            </tbody>
-          </table>
-        
-      </div>
-    </div>
+     
 
     
 </div>
@@ -221,6 +175,28 @@
 <!-- footer start-->
 <x-visiter-footer/>
 <!-- footer END-->
+<script>
+  $('#payment_type').change(function () { 
+   var value_pay =  $(this).val();
+    
+   if (value_pay == 0) {
+    var div_create = '      <div class="col-md-6">'+
+                        '<p class=" form-name">Transaction Image</p>'+
+                  '<input type="file" name="image" class=" form-input"  placeholder="Transaction ID" accept=".jpg,jpeg,.png" required>'+
+                '</div>'+
+                '<div class="col-md-6">'+
+                  '<p class=" form-name">Transaction ID</p>'+
+              '<input type="text" name="trans_id" class=" form-input"  placeholder="1478952364" required>'+
+              '</div>';
+              $('#trans_detail').append(div_create);
+     
+   } 
+    else {
+      $('#trans_detail').html('');
+   }
 
+
+  });
+</script>
 </body>
 </html>

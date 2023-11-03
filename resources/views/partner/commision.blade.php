@@ -101,6 +101,37 @@
             </table>
           </div>
 
+          <div class="table-responsive">
+            <table class="table table-bordered bg-white mt-5">
+              <thead>
+                <tr>
+                  <th scope="col"># SR</th>
+                  <th scope="col">Account Name</th>
+                  <th scope="col">Account Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if (!empty($accounts))
+                @php  $i = 1 ; @endphp
+              @foreach ($accounts as $item)
+
+              <tr>
+                <th scope="row">{{$i}}</th>
+                <td>{{$item->account_name}} ({{$item->holder_name}})</td>
+                <td>{{$item->account_number}}</td>
+              </tr>
+                  
+              @php  $i++; @endphp
+              @endforeach
+                  
+              @endif
+            
+          
+              </tbody>
+            </table>
+          </div>
+
+
 
           <div class="table-responsive bg-white p-3 mt-4">
             <div class="datatable-heading">

@@ -19,6 +19,10 @@
  <script src="assets/js/sweetalert.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+  {{-- Bootstrap Datatable CSS CDN --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+  
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -101,7 +105,7 @@
 
           <div class="row">
             <div class="table-responsive">
-              <table class="table table-striped">
+              <table  id="example" class="table table-striped" style="width:100%">
                 <thead class="bg-primary">
                   <tr>
                     <th>Name</th>
@@ -113,11 +117,10 @@
                     <th>Referral CNIC</th>
                     <th>Address</th>
                     <th>Price</th>
-                    <th>CNIC Front</th>
-                    <th>CNIC Back</th>
                     <th>Transaction Image</th>
                     <th>Partner Commission(%)</th>
                     <th>Status</th>
+                    <th>Payment Type</th>
                     <th>Acctions</th>
                   </tr>
                 </thead>
@@ -135,8 +138,7 @@
                     <td>{{$item->reffral_cnic}}</td>
                     <td>{{$item->address}}</td>
                     <td>{{$item->price}}</td>
-                    <td><img src="assets/cnic/front/{{$item->cnic_front}}" alt=""  onclick="window.open(this.src, '_blank');" style="cursor: pointer;"></td>
-                    <td><img src="assets/cnic/back/{{$item->cnic_back}}" alt="" onclick="window.open(this.src, '_blank');" style="cursor: pointer;"></td>
+                   
                     <td><img src="assets/trans/{{$item->transaction_image}}" alt="" onclick="window.open(this.src, '_blank');" style="cursor: pointer;"></td>
                    
                     <td>{{$item->partner_commission}}</td>
@@ -159,6 +161,17 @@
                     <td class="text-danger">Claim Declined</td>
   
                     @endif
+                    
+                     
+                      @if ($item->payment_type == 0)
+                      <td  >Online Payment</td>
+                      @elseif($item->payment_type == 1)
+                      <td  >Cash Payment</td>  
+                      
+                      @elseif($item->payment_type == 2)
+                      <td  >No Payment</td>  
+
+                      @endif
                     
                     <td>
                       @if ($item->status == 0)
@@ -204,7 +217,15 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="assets/admin/js/dashboard.js"></script>
-  <!-- End custom js for this page-->
+  <!-- End custom js for this page-->   
+  {{-- Bootstrap Datatable Jquery CDN --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script>
+     new DataTable('#example');
+   </script>
 </body>
 
 

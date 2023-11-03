@@ -21,12 +21,11 @@ class ClaimLottery extends Model
         'reffral_name',
         'reffral_cnic',
         'dob',
-        'cnic_front',
-        'cnic_back',
         'transaction_image',
         'transaction_id',
         'address',
         'price',
         'status',
+        'payment_type',
     ];
 }

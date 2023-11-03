@@ -63,7 +63,7 @@
                   @endphp
                   @if (!empty($company_details))
                       
-                  <a class="navbar-brand " href="/partner"><img src="assets/company/img/{{$company_details->logo}}" alt=""></a>
+                  <a class="navbar-brand " href="/partner"><img src="assets/company/img/{{$company_details->logo}}" alt=""  style="width: 100px;"></></a>
                   @endif
                       <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>

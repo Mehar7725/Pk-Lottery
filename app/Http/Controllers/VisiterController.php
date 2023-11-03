@@ -101,64 +101,92 @@ class VisiterController extends Controller
             ]);
         }
 
-        $transection = ClaimLottery::where(['transaction_id'=>$request->trans_id])->first();
+        if ($request->trans_id != null) {
+            $transection = ClaimLottery::where(['transaction_id'=>$request->trans_id])->first();
         if (!empty($transection)) {
             return redirect()->back()->with('error',"Transaction ID Invalid, This ID Already Submmitted!");
         }
-
-        
-            // Upload and save image
-        $image_front = $request->image_front;
-        $imageName_front =  $image_front->getClientOriginalName();
-        $image_front->move(public_path().'/assets/claim/cnic/front', $imageName_front);
-        $imageData_front = $imageName_front;
-
-     
-
-    // Upload and save image
-        $image_back = $request->image_back;
-        $imageName_back =  $image_back->getClientOriginalName();
-        $image_back->move(public_path().'/assets/claim/cnic/back', $imageName_back);
-        $imageData_back = $imageName_back;
-
-     
-
-    // Upload and save image
-        $transection_img = $request->trans_image;
-        $imageName_trans =  $transection_img->getClientOriginalName();
-        $transection_img->move(public_path().'/assets/claim/trans', $imageName_trans);
-        $imageData_trans = $imageName_trans;
+        }
+       
 
         $buy_lottery = BuyLottery::find($request->buy_id);
 
-        $claim_lottery = ClaimLottery::create([
-            'buy_id'=> $request->buy_id,
-            'name'=> $request->name,
-            'father_name'=> $request->father_name,
-            'cnic'=> $request->cnic,
-            'lottery_code'=> $buy_lottery->lottery_code,
-            'lottery_id'=> $buy_lottery->lottery_id,
-            'lottery_name'=> $buy_lottery->lottery_name,
-            'lottery_image'=> $buy_lottery->lottery_image,
-            'reffral_id'=> $buy_lottery->reffral_id,
-            'reffral_name'=> $buy_lottery->reffral_name,
-            'reffral_cnic'=>  $buy_lottery->reffral_cnic,
-            'dob'=> $request->dob,
-            'cnic_front'=> $imageData_front,
-            'cnic_back'=> $imageData_back,
-            'transaction_image'=> $imageData_trans,
-            'transaction_id'=> $request->trans_id,
-            'address'=> $request->address,
-            'price'=> $request->price,
-        ]);
+   if ($request->hasfile('image') || $request->payment_type == 0) {
+    
+       // Upload and save image
+       $transection_img = $request->image;
+       $imageName_trans =  $transection_img->getClientOriginalName();
+       $transection_img->move(public_path().'/assets/claim/trans', $imageName_trans);
+       $imageData_trans = $imageName_trans;
 
-        if ($claim_lottery) {
-            $buy_lottery->status = 3;
-            $buy_lottery->update();
-            return redirect()->to('/our-lottery')->with('success',"Lottery Claimed Successfuly, Please wait Admin Approvel!");
-        } else {
-            return redirect()->back()->with('error',"Something Rong Tryagain Later!");
-        }
+    
+       $claim_lottery = ClaimLottery::create([
+        'buy_id'=> $request->buy_id,
+        'name'=> $request->name,
+        'father_name'=> $request->father_name,
+        'cnic'=> $request->cnic,
+        'lottery_code'=> $buy_lottery->lottery_code,
+        'lottery_id'=> $buy_lottery->lottery_id,
+        'lottery_name'=> $buy_lottery->lottery_name,
+        'lottery_image'=> $buy_lottery->lottery_image,
+        'reffral_id'=> $buy_lottery->reffral_id,
+        'reffral_name'=> $buy_lottery->reffral_name,
+        'reffral_cnic'=>  $buy_lottery->reffral_cnic,
+        'dob'=> $request->dob,
+        'transaction_image'=> $imageData_trans,
+        'transaction_id'=> $request->trans_id,
+        'address'=> $request->address,
+        'price'=> $request->price,
+        'payment_type'=> $request->payment_type,
+    ]);
+    
+
+    if ($claim_lottery) {
+        $buy_lottery->status = 3;
+        $buy_lottery->update();
+        return redirect()->to('/our-lottery')->with('success',"Lottery Claimed Successfuly, Please wait Admin Approvel!");
+    } else {
+        return redirect()->back()->with('error',"Something Rong Tryagain Later!");
+    }
+    
+
+   } else {
+    
+    $claim_lottery = ClaimLottery::create([
+        'buy_id'=> $request->buy_id,
+        'name'=> $request->name,
+        'father_name'=> $request->father_name,
+        'cnic'=> $request->cnic,
+        'lottery_code'=> $buy_lottery->lottery_code,
+        'lottery_id'=> $buy_lottery->lottery_id,
+        'lottery_name'=> $buy_lottery->lottery_name,
+        'lottery_image'=> $buy_lottery->lottery_image,
+        'reffral_id'=> $buy_lottery->reffral_id,
+        'reffral_name'=> $buy_lottery->reffral_name,
+        'reffral_cnic'=>  $buy_lottery->reffral_cnic,
+        'dob'=> $request->dob,
+        'address'=> $request->address,
+        'price'=> $request->price,
+        'payment_type'=> $request->payment_type,
+    ]);
+
+    if ($claim_lottery) {
+        $buy_lottery->status = 3;
+        $buy_lottery->update();
+        return redirect()->to('/our-lottery')->with('success',"Lottery Claimed Successfuly, Please wait Admin Approvel!");
+    } else {
+        return redirect()->back()->with('error',"Something Rong Tryagain Later!");
+    }
+
+
+   }
+   
+
+ 
+
+       
+
+     
         
 
         

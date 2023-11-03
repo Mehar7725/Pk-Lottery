@@ -20,8 +20,6 @@ class BuyLottery extends Model
         'reffral_name',
         'reffral_cnic',
         'dob',
-        'cnic_front',
-        'cnic_back',
         'transaction_image',
         'transaction_id',
         'address',
@@ -29,5 +27,6 @@ class BuyLottery extends Model
         'claim_date_time',
         'partner_commission',
         'status',
+        'payment_type',
     ];
 }

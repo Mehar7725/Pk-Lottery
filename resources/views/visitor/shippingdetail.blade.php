@@ -74,54 +74,62 @@
 <input type="number" name="cnic" class=" form-input"  value="{{$lottery->cnic}}" placeholder="CNIC" required>
     </div>
     <div class="col-md-6">
-     <p class=" form-name">Lottery Code</p>
-<input type="number" name="lottery_code" class=" form-input" value="{{$lottery->lottery_code}}"  placeholder="Lottery Code" required>
-<input type="hidden" name="lottery_id" class=" form-input" value="{{$lottery->lottery_id}}"  placeholder="Lottery Code">
-</div>
+      <p class=" form-name">DOB</p>
+ <input type="date" name="dob" class=" form-input" value="{{$lottery->dob}}"  placeholder="DD/MM/YYYY" style="    color: gray;" required>
+     </div>
+ 
  </div>
 
  <div class="row">
-    <div class="col-md-6">
-     <p class=" form-name">DOB</p>
-<input type="date" name="dob" class=" form-input" value="{{$lottery->dob}}"  placeholder="DD/MM/YYYY" style="    color: gray;" required>
-    </div>
-    <div class="col-md-6">
-     <p class=" form-name">CNIC Image Front</p>
-<input type="file" name="image_front" class=" form-input"  placeholder="CNIC Image Front" accept=".jpg,jpeg,.png" required>
-</div>
- </div>
-
- <div class="row">
-    <div class="col-md-6">
-     <p class=" form-name">CNIC Image Back</p>
-<input type="file" name="image_back" class=" form-input"  placeholder="CNIC Image Back" accept=".jpg,jpeg,.png" required>
-    </div>
-    <div class="col-md-6">
-     <p class=" form-name">Transaction Image</p>
-<input type="file" name="trans_image" class=" form-input"  placeholder="Transaction ID" accept=".jpg,jpeg,.png" required>
-</div>
- </div>
- <div class="row">
-    <div class="col-md-6">
-     <p class=" form-name">Transaction ID</p>
-<input type="number" name="trans_id" class=" form-input"    placeholder="Referral Code"  required>
-    </div>
-    <div class="col-md-6">
-     <p class=" form-name">Address</p>
+  <div class="col-md-6">
+    <p class=" form-name">Address</p>
 <input type="text" name="address" class=" form-input" value="{{$lottery->address}}"  placeholder="Address" required>
 </div>
+    
+<div class="col-md-6">
+  <p class=" form-name">Payment Type</p>
+  <select name="payment_type" class=" text-dark  form-input" id="payment_type"  >
+    <option value="0" selected>Online Payment</option>
+    <option value="1">Cash Payment</option>
+    <option value="2">No Payment</option>
+  </select>
+  
+</div>
+
+ </div>
+
+ <div class="row" id="trans_detail">
+       
+  <div class="col-md-6">
+    <p class=" form-name">Transaction Image</p>
+<input type="file" name="image" class=" form-input"  placeholder="Transaction ID" accept=".jpg,jpeg,.png" required>
+</div>
+<div class="col-md-6">
+<p class=" form-name">Transaction ID</p>
+<input type="text" name="trans_id" class=" form-input"  placeholder="1478952364" required>
+</div>
+</div>
+
+ <div class="row">
+  <div class="col-md-12">
+    <p class=" form-name">Reffral Name</p>
+<input type="text" name="reffral_name" class=" form-input" value="{{$lottery->reffral_name}}"  placeholder="Address" readonly required style="width: 93%;">
+<input type="hidden" name="reffral_cnic" class=" form-input" value="{{$lottery->reffral_cnic}}"  placeholder="Address" readonly>
+<input type="hidden" name="reffral_id" class=" form-input" value="{{$lottery->reffral_id}}"  placeholder="Address" readonly>
+</div>
+  
  </div>
  <div class="row">
     <div class="col-md-6">
      <p class=" form-name">Shipping cost</p>
 <input type="number" name="price" class=" form-input" value="{{$lottery->price}}"   placeholder="Referral Code" required>
     </div>
-    <div class="col-md-6">
-      <p class=" form-name">Reffral Name</p>
- <input type="text" name="reffral_name" class=" form-input" value="{{$lottery->reffral_name}}"  placeholder="Address" readonly required>
- <input type="hidden" name="reffral_cnic" class=" form-input" value="{{$lottery->reffral_cnic}}"  placeholder="Address" readonly>
- <input type="hidden" name="reffral_id" class=" form-input" value="{{$lottery->reffral_id}}"  placeholder="Address" readonly>
- </div>
+  
+ <div class="col-md-6">
+  <p class=" form-name">Lottery Code</p>
+<input type="number" name="lottery_code" class=" form-input" value="{{$lottery->lottery_code}}"  placeholder="Lottery Code" required>
+<input type="hidden" name="lottery_id" class=" form-input" value="{{$lottery->lottery_id}}"  placeholder="Lottery Code">
+</div>
  </div>
 
 
@@ -214,6 +222,29 @@
 <!-- footer start-->
 <x-visiter-footer/>
 <!-- footer END-->
+<script>
+  $('#payment_type').change(function () { 
+   var value_pay =  $(this).val();
+    
+   if (value_pay == 0) {
+    var div_create = '      <div class="col-md-6">'+
+                        '<p class=" form-name">Transaction Image</p>'+
+                  '<input type="file" name="image" class=" form-input"  placeholder="Transaction ID" accept=".jpg,jpeg,.png" required>'+
+                '</div>'+
+                '<div class="col-md-6">'+
+                  '<p class=" form-name">Transaction ID</p>'+
+              '<input type="text" name="trans_id" class=" form-input"  placeholder="1478952364" required>'+
+              '</div>';
+              $('#trans_detail').append(div_create);
+     
+   } 
+    else {
+      $('#trans_detail').html('');
+   }
+
+
+  });
+</script>
 
 </body>
 </html>

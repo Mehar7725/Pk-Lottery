@@ -178,10 +178,13 @@ class PartnerController extends Controller
             }
         }
 
-        $transection = BuyLottery::where(['transaction_id'=>$request->trans_id])->first();
-        if (!empty($transection)) {
-            return redirect()->back()->with('error',"Transaction ID Invalid, This ID Already Submmitted!");
+        if ($request->trans_id != null) {
+            $transection = BuyLottery::where(['transaction_id'=>$request->trans_id])->first();
+            if (!empty($transection)) {
+                return redirect()->back()->with('error',"Transaction ID Invalid, This ID Already Submmitted!");
+            }
         }
+     
 
         if (empty($user)) {
             User::create([
@@ -195,36 +198,18 @@ class PartnerController extends Controller
             ]);
         }
 
+        $get_lottery = Lottery::find($request->lottery_id);
+
+
           // Upload and save image
-        //   if($request->hasfile('image')){
+          if($request->hasfile('image') || $request->payment_type == 0){
 
-            
-            $image_front = $request->image_front;
-            $imageName_front =  $image_front->getClientOriginalName();
-            $image_front->move(public_path().'/assets/cnic/front', $imageName_front);
-            $imageData_front = $imageName_front;
-
-         
-
-
-            $image_back = $request->image_back;
-            $imageName_back =  $image_back->getClientOriginalName();
-            $image_back->move(public_path().'/assets/cnic/back', $imageName_back);
-            $imageData_back = $imageName_back;
-
-         
-
-
-            $transection_img = $request->trans_image;
+            $transection_img = $request->image;
             $imageName_trans =  $transection_img->getClientOriginalName();
             $transection_img->move(public_path().'/assets/trans', $imageName_trans);
             $imageData_trans = $imageName_trans;
 
-         
-          
-  $get_lottery = Lottery::find($request->lottery_id);
-
-
+            
         $buy_lottery = BuyLottery::create([
             'name'=> $request->name,
             'father_name'=> $request->father_name,
@@ -237,27 +222,115 @@ class PartnerController extends Controller
             'reffral_name'=> Auth::user()->name,
             'reffral_cnic'=> Auth::user()->cnic,
             'dob'=> $request->dob,
-            'cnic_front'=> $imageData_front,
-            'cnic_back'=> $imageData_back,
             'transaction_image'=> $imageData_trans,
             'transaction_id'=> $request->trans_id,
             'address'=> $request->address,
             'price'=> $request->cost,
-            'partner_commission'=> $request->commission,
+            'partner_commission'=> $get_lottery->partner_commission,
+            'status'=> 1,
+            'payment_type'=> $request->payment_type,
         ]);
 
 
+        
         $lottery = Lottery::find($request->lottery_id);
         $remain_lottery = $lottery->remain_lotteries - 1;
         $lottery->remain_lotteries =  $remain_lottery ;
         $lottery->update();
    
 
-if ($buy_lottery) {
-    return redirect()->to('/buy-lottery')->with('success',"Lottery Buy Successfuly, Please wait Admin Approvel!");
-} else {
-    return redirect()->back()->with('error',"Something Rong Tryagain Later!");
-}
+        if ($buy_lottery) {
+            return redirect()->to('/buy-lottery')->with('success',"Lottery Buy Successfuly!");
+        } else {
+            return redirect()->back()->with('error',"Something Rong Tryagain Later!");
+        }
+
+          }else{
+
+            if ($request->payment_type == 1) {
+
+
+                $buy_lottery = BuyLottery::create([
+                    'name'=> $request->name,
+                    'father_name'=> $request->father_name,
+                    'cnic'=> $request->cnic,
+                    'lottery_code'=> $request->lottery_code,
+                    'lottery_id'=> $request->lottery_id,
+                    'lottery_name'=> $get_lottery->name,
+                    'lottery_image'=> $get_lottery->image,
+                    'reffral_id'=> Auth::user()->id,
+                    'reffral_name'=> Auth::user()->name,
+                    'reffral_cnic'=> Auth::user()->cnic,
+                    'dob'=> $request->dob,
+                    'address'=> $request->address,
+                    'price'=> $request->cost,
+                    'partner_commission'=> $get_lottery->partner_commission,
+                    'status'=> 1,
+                    'payment_type'=> $request->payment_type,
+                ]);
+
+                  
+        $lottery = Lottery::find($request->lottery_id);
+        $remain_lottery = $lottery->remain_lotteries - 1;
+        $lottery->remain_lotteries =  $remain_lottery ;
+        $lottery->update();
+   
+
+        if ($buy_lottery) {
+            return redirect()->to('/buy-lottery')->with('success',"Lottery Buy Successfuly!");
+        } else {
+            return redirect()->back()->with('error',"Something Rong Tryagain Later!");
+        }
+                 
+            } elseif($request->payment_type == 2) {
+                
+                $buy_lottery = BuyLottery::create([
+                    'name'=> $request->name,
+                    'father_name'=> $request->father_name,
+                    'cnic'=> $request->cnic,
+                    'lottery_code'=> $request->lottery_code,
+                    'lottery_id'=> $request->lottery_id,
+                    'lottery_name'=> $get_lottery->name,
+                    'lottery_image'=> $get_lottery->image,
+                    'reffral_id'=> Auth::user()->id,
+                    'reffral_name'=> Auth::user()->name,
+                    'reffral_cnic'=> Auth::user()->cnic,
+                    'dob'=> $request->dob,
+                    'address'=> $request->address,
+                    'price'=> $request->cost,
+                    'partner_commission'=> 0,
+                    'status'=> 1,
+                    'payment_type'=> $request->payment_type,
+                ]);
+
+                  
+        $lottery = Lottery::find($request->lottery_id);
+        $remain_lottery = $lottery->remain_lotteries - 1;
+        $lottery->remain_lotteries =  $remain_lottery ;
+        $lottery->update();
+   
+
+        if ($buy_lottery) {
+            return redirect()->to('/buy-lottery')->with('success',"Lottery Buy Successfuly!");
+        } else {
+            return redirect()->back()->with('error',"Something Rong Tryagain Later!");
+        }
+            }
+            
+
+
+          }
+
+
+          
+
+         
+          
+  
+
+
+
+
 
 // }
 
@@ -292,8 +365,8 @@ public function Commission()  {
     }
     
     $company_detail = CompanyDetail::first();
-    
-    return view('partner.commision', compact('company_detail'));
+    $accounts = AccountDetail::latest()->get();
+    return view('partner.commision', compact('company_detail','accounts'));
     
 }
 
