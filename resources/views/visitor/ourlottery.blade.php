@@ -70,7 +70,7 @@
                             </div>
                             <div class="col col-md-6 col-sm-6 card-right">
                                 <b class="text-light">Lottery Value</b>
-                                <span>Rs.{{$item->price}}</span>
+                                <span>Rs.{{$item->shipping_fee}}</span>
                             
                             </div>
                         </div>

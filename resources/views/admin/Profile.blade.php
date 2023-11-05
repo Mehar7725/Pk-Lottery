@@ -8,7 +8,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin | Add Lottery</title>
+  <title>Admin | Prifle</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="assets/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="assets/admin/vendors/base/vendor.bundle.base.css">
@@ -65,41 +65,37 @@
             </div>
           </div>
 
-          <form action="/create-lottery" method="POST" enctype="multipart/form-data" class="row g-3">
+          <form action="/admin-profile-update" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Loutrey Code</label>
-              <input type="text" name="code" maxlength="8" class="form-control" placeholder="8 digit code maximum" id="inputEmail4" required>
+              <label for="inputEmail4" class="form-label">Name</label>
+              <input type="text" name="name" value="{{Auth::user()->name}}"  class="form-control" placeholder="Maher Ali " id="inputEmail4" required>
             </div>
             <div class="col-md-6">
-              <label for="inputPassword4" class="form-label">Loutrey Name</label>
-              <input type="text" name="name" class="form-control" id="inputPassword4" required>
+              <label for="inputEmail4" class="form-label">Father Name</label>
+              <input type="text" name="father_name"  value="{{Auth::user()->father_name}}"   class="form-control" placeholder="Maher Ali " id="inputEmail4" required>
             </div>
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Price</label>
-              <input type="number" name="price" class="form-control" id="inputEmail4" required>
+              <label for="inputPassword4" class="form-label">CNIC</label>
+              <input type="text" name="cnic"  value="{{Auth::user()->cnic}}" class="form-control" id="inputPassword4" required>
             </div>
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Shipping Fee</label>
-              <input type="number"   name="shipping_fee"   class="form-control" placeholder="1200" id="inputEmail4" required>
+              <label for="inputEmail4" class="form-label">DOB </label>
+              <input type="date" name="dob"  value="{{Auth::user()->dob}}" class="form-control" id="inputEmail4" required>
+            </div>
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Address </label>
+              <input type="text" name="address"  value="{{Auth::user()->address}}" class="form-control" id="inputEmail4" placeholder="Lahore" required>
             </div>
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Picture</label>
-              <input type="file" name="image" class="form-control" id="inputEmail4"  accept=".jpg,.jpeg,.png" required>
+              <label for="inputEmail4" class="form-label">New Password</label>
+              <input type="password" name="password" class="form-control" id="inputEmail4" placeholder="xxxxxxx" >
             </div>
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Loutrey Cliam Date </label>
-              <input type="date" name="claim_time" class="form-control" id="inputEmail4" required>
+              <label for="inputEmail4" class="form-label">Confirm Password</label>
+              <input type="password"   name="c_password"   class="form-control" placeholder="xxxxxxxx" id="inputEmail4"  >
             </div>
-            <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Total Loutries</label>
-              <input type="number" name="total_lotries" class="form-control" placeholder="1467" id="inputEmail4" required>
-            </div>
-            
-            <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Partner Commission(%)</label>
-              <input type="number" min="1" name="partner_commission" onKeyPress="if(this.value.length==2) return false" class="form-control" placeholder="25" id="inputEmail4" required>
-            </div>
+          
             <div class="col-12">
               <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>

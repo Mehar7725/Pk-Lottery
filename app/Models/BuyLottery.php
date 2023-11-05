@@ -24,6 +24,7 @@ class BuyLottery extends Model
         'transaction_id',
         'address',
         'price',
+        'shipping_fee',
         'claim_date_time',
         'partner_commission',
         'status',

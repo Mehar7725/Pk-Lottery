@@ -117,6 +117,7 @@
                     <th>Referral CNIC</th>
                     <th>Address</th>
                     <th>Price</th>
+                    <th>Shipping Fee</th>
                     <th>Transaction Image</th>
                     <th>Partner Commission(%)</th>
                     <th>Status</th>
@@ -138,6 +139,7 @@
                     <td>{{$item->reffral_cnic}}</td>
                     <td>{{$item->address}}</td>
                     <td>{{$item->price}}</td>
+                    <td>{{$item->shipping_fee}}</td>
                    
                     <td><img src="assets/trans/{{$item->transaction_image}}" alt="" onclick="window.open(this.src, '_blank');" style="cursor: pointer;"></td>
                    

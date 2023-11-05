@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('total_lotteries')->nullable();
             $table->string('remain_lotteries')->nullable();
             $table->string('partner_commission')->nullable();
+            $table->string('shipping_fee')->nullable();
             $table->timestamps();
         });
     }

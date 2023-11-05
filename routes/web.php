@@ -65,6 +65,7 @@ Route::controller(PartnerController::class)->group(function () {
 // AdminController
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin-dashboard', 'Dashboard');
+    Route::get('/admin-profile', 'AdminProfile');
     Route::get('/add-lottery', 'AddLottery');
     Route::get('/lottery-details', 'LotteryDetails');
     Route::get('/add-partner', 'AddPartner');
@@ -127,4 +128,6 @@ Route::controller(AdminController::class)->group(function () {
     // Home Add =======
     Route::post('/upload-add', 'UploadAdd');
     Route::get('/add-delete/{id}', 'AddDelete');
+    // Profile Update ======
+    Route::post('/admin-profile-update', 'AdminProfileUpdate');
 });

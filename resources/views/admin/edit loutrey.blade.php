@@ -82,6 +82,10 @@
               <input type="number" name="price" value="{{$lottery->price}}" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Shipping Fee</label>
+              <input type="number" name="shipping_fee" value="{{$lottery->shipping_fee}}" class="form-control" id="inputEmail4" required>
+            </div>
+            <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Picture</label>
               <input type="file" name="image" class="form-control" id="inputEmail4"  accept=".jpg,.jpeg,.png" >
             </div>

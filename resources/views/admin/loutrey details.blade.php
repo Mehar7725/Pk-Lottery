@@ -77,6 +77,7 @@
                     <th>Loutery Code</th>
                     <th>Loutery Name</th>
                     <th>Price</th>
+                    <th>Shipping Fee</th>
                     <th>Claim Time</th>
                     <th>Total Lotteries</th>
                     <th>Remaining Lotteries</th>
@@ -92,6 +93,7 @@
                     <td>{{$item->code}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->price}}</td>
+                    <td>{{$item->shipping_fee}}</td>
                     <td>{{$item->claim_date_time}}</td>
                     <td>{{$item->total_lotteries}}</td>
                     <td>{{$item->remain_lotteries}}</td>

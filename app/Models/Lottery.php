@@ -17,5 +17,6 @@ class Lottery extends Model
         'total_lotteries',
         'remain_lotteries',
         'partner_commission',
+        'shipping_fee',
     ];
 }

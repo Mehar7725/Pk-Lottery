@@ -36,6 +36,20 @@ class AdminController extends Controller
         $lotteries = Lottery::count();
         return view('admin.index', compact('partner','visiter','winners','lotteries'));
     }
+    //
+    public function AdminProfile() {
+
+        if (!Auth::user()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->role != 2) {
+            return redirect('/');
+        }
+        
+
+        return view('admin.Profile');
+    }
 
     public function AddLottery() {
         
@@ -347,7 +361,7 @@ class AdminController extends Controller
             return redirect('/');
         }
         $partner = User::find($id);
-        $partner_reffrals = User::where(['reffral_id'=>$partner->id])->get();
+        $partner_reffrals = User::where(['reffral_id'=>$partner->id])->latest()->get();
         return view('admin.partner re details', compact('partner_reffrals'));
     }
 
@@ -361,7 +375,7 @@ class AdminController extends Controller
             return redirect('/');
         }
         $partner = User::find($id);
-        $commission = PartnerCommission::where(['partner_id'=>$id])->get();
+        $commission = PartnerCommission::where(['partner_id'=>$id])->latest()->get();
         return view('admin.partner re commission', compact('commission'));
     }
 
@@ -467,7 +481,7 @@ class AdminController extends Controller
         $partner = User::find($request->partner_id);
         
         if ($partner->cnic != $request->cnic) {
-            $cnic = User::where('cnic','!=',$request->cnic)->first();
+            $cnic = User::where(['cnic'=>$request->cnic])->first();
             if (!empty($cnic)) {
                 return redirect()->back()->with('error',"New CNIC Number Entered Allready in Use!");
             }
@@ -555,6 +569,7 @@ public function CreateLottery(Request $request)   {
             'total_lotteries'=>$request->total_lotries,
             'remain_lotteries'=>$request->total_lotries,
             'partner_commission'=>$request->partner_commission,
+            'shipping_fee'=>$request->shipping_fee,
             'image'=>$imageData,
         ]);
 
@@ -567,6 +582,7 @@ public function CreateLottery(Request $request)   {
             'total_lotteries'=>$request->total_lotries,
             'remain_lotteries'=>$request->total_lotries,
             'partner_commission'=>$request->partner_commission,
+            'shipping_fee'=>$request->shipping_fee,
         ]);
     }
 
@@ -646,6 +662,7 @@ $lottery->claim_date_time = $request->claim_time;
 $lottery->total_lotteries = $request->total_lotries;
 $lottery->remain_lotteries = $new_remain;
 $lottery->partner_commission = $request->partner_commission;
+$lottery->shipping_fee = $request->shipping_fee;
 $lottery->update();
 
 if ($lottery) {
@@ -653,6 +670,7 @@ if ($lottery) {
     if (!empty($buy_lottery)) {
         foreach ($buy_lottery as $key => $value) {
             $value->price = $request->price ;
+            $value->shipping_fee = $request->shipping_fee ;
             $value->claim_date_time = $request->claim_time ;
             $value->update();
         }
@@ -661,6 +679,7 @@ if ($lottery) {
     if (!empty($buy_lottery)) {
         foreach ($buy_lottery as $key => $value) {
             $value->price = $request->price ;
+            $value->shipping_fee = $request->shipping_fee ;
             $value->claim_date_time = $request->claim_time ;
             $value->update();
         }
@@ -1137,6 +1156,46 @@ public function AddDelete($id)   {
     
 }
 // Home Add Functions END ======================
+// Admin Profile Update Functions Start ======================
+public function AdminProfileUpdate(Request $request)  {
+    
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+
+    if (Auth::user()->role != 2) {
+        return redirect('/');
+    }
+    
+    $admin  = User::where(['id'=>Auth::user()->id])->first();
+
+    if ($admin->cnic != $request->cnic) {
+        $cnic = User::where(['cnic'=>$request->cnic])->first();
+        if (!empty($cnic)) {
+            return redirect()->back()->with('error',"New CNIC Number Entered Allready in Use!");
+        }
+        
+        $admin->cnic = $request->cnic ;
+    }
+
+    if ($request->password != null || $request->c_password != null) {
+        
+        if ($request->password != $request->c_password) {
+            return redirect()->back()->with('error',"New Password & Confirm Password Miss Matched!");
+        }
+        $admin->password = $request->password ;
+    }
+
+    $admin->name = $request->name ;
+    $admin->father_name = $request->father_name ;
+    $admin->cnic = $request->cnic ;
+    $admin->dob = $request->dob ;
+    $admin->address = $request->address ;
+
+    $admin->update();
+    return redirect()->back()->with('success',"Profile Updated Successfully!");
+}
+// Admin Profile Update Functions END ======================
 
 
 

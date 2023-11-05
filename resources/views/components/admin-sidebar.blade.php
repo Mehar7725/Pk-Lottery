@@ -7,6 +7,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/admin-profile">
+          <i class="ti-user menu-icon"></i>
+          <span class="menu-title">Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/company-details">
           <i class="ti-layout-grid2 menu-icon"></i>
           <span class="menu-title">Company Details</span>

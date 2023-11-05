@@ -79,7 +79,7 @@
               <table  id="example" class="table table-striped" style="width:100%">
                 <thead class="bg-primary">
                   <tr>
-                    <th>Date</th>
+                    <th>Date Time</th>
                     <th>Name</th>
                     <th>Father Name</th>
                     <th>CNIC</th>
@@ -97,7 +97,7 @@
                   @foreach ($commission as $item)
 
                   <tr>
-                    <td>{{$item->date}}</td>
+                    <td>{{$item->created_at}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->father_name}}</td>
                     <td>{{$item->cnic}}</td>

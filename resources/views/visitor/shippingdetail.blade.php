@@ -122,7 +122,7 @@
  <div class="row">
     <div class="col-md-6">
      <p class=" form-name">Shipping cost</p>
-<input type="number" name="price" class=" form-input" value="{{$lottery->price}}"   placeholder="Referral Code" required>
+<input type="number" name="price" class=" form-input" value="{{$lottery->shipping_fee}}"   placeholder="Referral Code" required>
     </div>
   
  <div class="col-md-6">
@@ -139,6 +139,12 @@
         <button type="submit" class="btn  ">SUBMIT</button>
     </div>
     <div class="col-md-3 col-sm-3"></div>
+ </div>
+
+ <div class="row mt-4">
+    <div class="col-md-12 col-sm-12">
+      <h6 class="text-center text-warning"> Submit Payment Verification Image with Transaction ID.</h6>
+    </div>
  </div>
 
  </form>

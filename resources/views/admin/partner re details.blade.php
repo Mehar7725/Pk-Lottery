@@ -54,6 +54,7 @@
               <table id="example" class="table table-striped" style="width:100%">
                 <thead class="bg-primary">
                   <tr>
+                    <th>Date Time</th>
                     <th>Name</th>
                     <th>F.Name</th>
                     <th>CNIC</th>
@@ -66,6 +67,7 @@
                   @foreach ($partner_reffrals as $item)
                       
                   <tr>
+                    <td>{{$item->created_at}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->father_name}}</td>
                     <td>{{$item->cnic}}</td>

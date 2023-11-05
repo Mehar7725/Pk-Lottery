@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('transaction_id')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('price')->nullable();
+            $table->string('shipping_fee')->nullable();
             $table->date('claim_date_time')->nullable();
             $table->string('partner_commission')->nullable();
             $table->tinyInteger('status')->default(0);
